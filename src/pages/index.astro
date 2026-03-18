@@ -1850,6 +1850,95 @@ const galleryItems = [
           padding: 2rem 1.5rem;
         }
       }
+
+      /* --- ポストカードセット セクション --- */
+      .postcard-section {
+        background-color: #faf8f5;
+        padding-bottom: 8rem;
+        position: relative;
+        z-index: 18; /* canvas-size(15)より上でprofile(20)の下 */
+      }
+      .postcard-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4rem;
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .postcard-image {
+        flex: 1;
+        max-width: 500px;
+      }
+      .postcard-image img {
+        width: 100%;
+        height: auto;
+        border-radius: 16px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        display: block;
+      }
+      .postcard-info {
+        flex: 1;
+      }
+      .postcard-spec-box {
+        display: inline-block;
+        border: 1px solid var(--accent-green);
+        background-color: rgba(0, 163, 129, 0.05);
+        padding: 0.4rem 0.8rem;
+        border-radius: 6px;
+        color: var(--accent-green);
+        font-size: 0.85rem;
+        font-weight: 500;
+        margin-top: 0;
+        line-height: 1.4;
+      }
+      .postcard-description {
+        font-size: 0.95rem; /* PC版を少し小さく */
+        line-height: 1.8;
+        margin-top: 1.5rem;
+        color: #555555;
+      }
+      .postcard-price {
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--accent-green);
+        margin-bottom: 2.5rem;
+        letter-spacing: 0.05em;
+      }
+      .instagram-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+      .instagram-btn .instagram-icon {
+        width: 20px;
+        height: 20px;
+        fill: currentColor;
+      }
+      @media (max-width: 768px) {
+        .postcard-section {
+          padding-bottom: 5rem;
+        }
+        .postcard-content {
+          flex-direction: column;
+          gap: 2.5rem;
+          text-align: center;
+        }
+        .postcard-image {
+          margin: 0 auto;
+        }
+        .postcard-info .section-title {
+          text-align: center;
+        }
+        .postcard-spec-box {
+          margin: 0 auto;
+          display: inline-block;
+        }
+        .postcard-description {
+          font-size: 0.95rem;
+          text-align: left;
+        }
+      }
     </style>
   </head>
   <body id="top" class="is-dark">
@@ -2059,6 +2148,36 @@ const galleryItems = [
             </div>
 
             <div class="depth-circle">厚み<br>1.5cm</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="postcard-section fade-in-up" id="postcards">
+        <div class="section-container">
+          <div class="postcard-content">
+            <div class="postcard-image">
+              <img src="/mitsumeru-animal-postcard-set.webp" alt="Postcard Set (10 pieces)" loading="lazy" decoding="async" />
+            </div>
+            <div class="postcard-info">
+              <h2 class="section-title" style="font-size: clamp(1.44rem, 3.6vw, 2.52rem); font-weight: 500; margin-bottom: 1rem;">ポストカード10種セット</h2>
+              <div class="postcard-spec-box">
+                一般的なサイズ148×100㎜／ケント紙220kg(高級感のあるしっかりとした厚み)
+              </div>
+              <p class="postcard-description">
+                「見つめるアニマル」シリーズから、ライオン、さる、ねこ、セイウチ、くじら、カピバラ、ぞう、ワニ、フラミンゴ、キツネの10種類をセットにしました。<br>
+                独特のテクスチャと柔らかな色彩を、手触りの良い紙質でお楽しみいただけます。
+              </p>
+              <div class="postcard-price">
+                ¥3,000 (税込 / 送料込)<br>
+                <span style="font-size: 0.65em; font-weight: 400; opacity: 0.7;">※海外、離島への発送は対応しておりません。</span>
+              </div>
+              <a href="https://www.instagram.com/heppo_m/" target="_blank" rel="noopener noreferrer" class="btn instagram-btn">
+                <svg class="instagram-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                DMから購入する
+              </a>
+            </div>
           </div>
         </div>
       </section>
