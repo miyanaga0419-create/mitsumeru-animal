@@ -1,0 +1,2499 @@
+---
+// Heppoの庭 トップページ
+
+// ギャラリー作品データ（18点）
+const galleryItems = [
+  { id: '01', title: 'さる', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥275,000 (税込)', image: '/gallery-01.webp' },
+  { id: '02', title: 'ライオン', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥330,000 (税込)', image: '/gallery-02.webp' },
+  { id: '03', title: 'ふくろう', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: 'SOLD OUT', image: '/gallery-03.webp', isSoldOut: true },
+  { id: '04', title: 'らくだ', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥143,000 (税込)', image: '/gallery-04.webp' },
+  { id: '05', title: 'カピバラ', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥165,000 (税込)', image: '/gallery-05.webp' },
+  { id: '06', title: 'ねこ', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥132,000 (税込)', image: '/gallery-06.webp' },
+  { id: '07', title: 'ワニ', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥220,000 (税込)', image: '/gallery-07.webp' },
+  { id: '08', title: 'しか', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥132,000 (税込)', image: '/gallery-08.webp' },
+  { id: '09', title: 'いぬ', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: 'SOLD OUT', image: '/gallery-09.webp', isSoldOut: true },
+  { id: '10', title: 'ぞう', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥253,000 (税込)', image: '/gallery-10.webp' },
+  { id: '11', title: 'フラミンゴ', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥209,000 (税込)', image: '/gallery-11.webp' },
+  { id: '12', title: 'キツネ', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥110,000 (税込)', image: '/gallery-12.webp' },
+  { id: '13', title: 'ゴリラ', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥242,000 (税込)', image: '/gallery-13.webp' },
+  { id: '14', title: 'ペンギン', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥165,000 (税込)', image: '/gallery-14.webp' },
+  { id: '15', title: 'しろくま', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥132,000 (税込)', image: '/gallery-15.webp' },
+  { id: '16', title: 'ひつじ', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥110,000 (税込)', image: '/gallery-16.webp' },
+  { id: '17', title: 'セイウチ', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥275,000 (税込)', image: '/gallery-17.webp' },
+  { id: '18', title: 'くじら', material: 'アクリル絵の具', size: 'キャンバスＦ３サイズ22cm×1.5cm×27.3cm', price: '¥275,000 (税込)', image: '/gallery-18.webp' }
+];
+---
+
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+    <title>アニマルの庭</title>
+    <style>
+      :root {
+        --bg-color: #faf8f5; /* ごく薄いオフホワイトに変更 */
+        --text-color: #333333;
+        --accent-green: #00A381;
+        --accent-yellow: #FFC400;
+        --eye-bg: #ffffff;
+        --eye-pupil: #2c2c2c;
+      }
+      body {
+        margin: 0;
+        font-family: "a-otf-koburina-gothic-pr6n", "Koburina Gothic", "Zen Kaku Gothic New", "Hiragino Sans", "ヒラギノ角ゴ ProN", "Yu Gothic", sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.8;
+        letter-spacing: 0.05em;
+        overflow-x: hidden; /* 画面全体の意図しない横揺れを防止 */
+      }
+      h1, h2, h3 {
+        font-family: "a-otf-koburina-gothic-pr6n", "Koburina Gothic", "Zen Kaku Gothic New", "Hiragino Sans", "ヒラギノ角ゴ ProN", "Yu Gothic", sans-serif;
+        font-weight: 500;
+      }
+      .section-title {
+        font-family: "a-otf-koburina-gothic-pr6n", "Koburina Gothic", "Zen Kaku Gothic New", "Hiragino Sans", "ヒラギノ角ゴ ProN", "Yu Gothic", sans-serif;
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        margin-bottom: 2rem;
+        line-height: 1.4;
+      }
+      .hamburger {
+        display: none;
+        position: fixed;
+        top: 1.5rem;
+        right: 1.5rem;
+        z-index: 2000; /* ナビゲーション(1000)より前面に配置して「×」を見せる */
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+      }
+
+      .hamburger span {
+        display: block;
+        position: absolute; /* 位置を固定してモーフィングしやすくする */
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: var(--text-color);
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+      }
+
+      /* 通常時の3本線の位置（等間隔に配置） */
+      .hamburger span:nth-child(1) { top: 10px; }
+      .hamburger span:nth-child(2) { top: 20px; }
+      .hamburger span:nth-child(3) { top: 30px; }
+
+      /* メニューが開いている時（is-openクラス時）のバツ印アニメーション */
+      .hamburger.is-open span:nth-child(1) {
+        transform: translateY(10px) rotate(45deg);
+      }
+
+      .hamburger.is-open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+
+      .hamburger.is-open span:nth-child(3) {
+        transform: translateY(-10px) rotate(-45deg);
+      }
+
+      @media (max-width: 768px) {
+        .hamburger.is-open span {
+          background-color: var(--text-color);
+        }
+      }
+      .side-nav {
+        position: fixed;
+        top: 2rem;
+        right: 2.5rem;
+        z-index: 1000; /* 十分に高いz-indexを設定して、すべての背景装飾の上に表示 */
+        width: max-content;
+        transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
+        /* すりガラス効果 */
+        padding: 2rem 1.5rem; /* テキストとの間隔を調整 */
+        background-color: rgba(252, 252, 252, 0.85); /* 背景色を少し濃くして、テキストを際立たせる */
+        backdrop-filter: blur(12px); /* ぼかし効果を强めて、背景の円の影響を減らす */
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 20px;
+      }
+      .side-nav ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 1.8rem;
+      }
+      .side-nav a {
+        color: var(--text-color);
+        text-decoration: none;
+        font-family: "a-otf-koburina-gothic-pr6n", "Koburina Gothic", "Zen Kaku Gothic New", "Hiragino Sans", "ヒラギノ角ゴ ProN", "Yu Gothic", sans-serif;
+        font-weight: 500;
+        font-size: 0.99rem; /* 元の1.1remから90%に縮小 */
+        letter-spacing: 0.3em;
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        display: inline-block;
+        transition: color 0.2s, opacity 0.2s, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        text-shadow: none; /* 安っぽい影を消去 */
+      }
+      .side-nav a:hover {
+        color: var(--accent-green);
+        opacity: 1;
+        transform: translateX(-8px) scale(1.05);
+      }
+      
+      @media (max-width: 768px) {
+        .hamburger {
+          display: block;
+        }
+        .side-nav {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 280px;
+          height: 100vh;
+          background-color: rgba(252, 252, 252, 0.85);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          display: flex;
+          align-items: flex-start;
+          justify-content: flex-start;
+          padding: 6rem 2rem 2rem;
+          box-shadow: -4px 0 15px rgba(0,0,0,0.05);
+          transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .side-nav.is-open {
+          right: 0;
+        }
+        .side-nav ul {
+          text-align: left;
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          width: 100%;
+        }
+        .side-nav a {
+          writing-mode: horizontal-tb;
+          font-size: 1.08rem; /* 元の1.2remから90%に縮小 */
+          letter-spacing: 0.1em;
+          display: block;
+          border-bottom: 1px solid rgba(0,0,0,0.05);
+          padding-bottom: 1rem;
+        }
+        .hamburger.is-open span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+        .hamburger.is-open span:nth-child(2) { opacity: 0; }
+        .hamburger.is-open span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+        .side-nav a:hover {
+          transform: translateY(-4px) scale(1.02);
+        }
+      }
+      .section-container {
+        padding: 0 2rem; /* 上下に設定されていた無駄な 4rem を削除し、間延びを根絶 */
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .hero {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        min-height: 600px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        background-color: transparent; /* 背景色を透明にして背後のCanvasを見せる */
+        z-index: 1;
+        will-change: opacity, filter; /* スクロール時の描画負荷を軽減し、滑らかに変化させる */
+      }
+
+      .hero-text-container {
+        position: relative;
+        z-index: 30; /* 10から30へ変更し、前景の動物(z-index:20)より前面に出す */
+        text-align: center;
+        pointer-events: none;
+      }
+
+      .eyes-container { margin-bottom: 2rem; }
+      .hero h1 { display: flex; justify-content: center; align-items: center; margin-bottom: 1.5rem; }
+      
+      /* 展開したSVGの基本設定 */
+      .hero-title-svg {
+        max-width: 100%;
+        width: 420px;
+        height: auto;
+        pointer-events: auto;
+        transform-origin: center;
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .hero-title-svg:hover {
+        transform: scale(1.06) rotate(-2deg);
+        cursor: pointer;
+      }
+      
+      @media (max-width: 768px) {
+        .hero-title-svg { width: 280px; }
+      }
+
+      /* マスク用パスのアニメーション（JSで取得した正確な長さを適用） */
+      .draw-path {
+        stroke-dasharray: var(--path-length, 1000); 
+        stroke-dashoffset: var(--path-length, 1000);
+        animation: drawLine 0.3s ease-out forwards;
+      }
+
+      @keyframes drawLine {
+        to { stroke-dashoffset: 0; }
+      }
+
+      /* 書き順と速度の完全制御（全体の時間を1/2に短縮） */
+
+      /* 「見」：1画ずつ丁寧に */
+      .draw-path.path-1 { animation-delay: 0.05s; animation-duration: 0.2s; }
+      .draw-path.path-2 { animation-delay: 0.15s; animation-duration: 0.2s; }
+      .draw-path.path-3 { animation-delay: 0.25s; animation-duration: 0.2s; }
+      .draw-path.path-4 { animation-delay: 0.35s; animation-duration: 0.2s; }
+      .draw-path.path-5 { animation-delay: 0.45s; animation-duration: 0.2s; }
+      .draw-path.path-6 { animation-delay: 0.55s; animation-duration: 0.2s; }
+      .draw-path.path-7 { animation-delay: 0.65s; animation-duration: 0.25s; }
+      
+      /* 「つ」：1画で長い線を引く */
+      .draw-path.path-8 { animation-delay: 0.85s; animation-duration: 0.45s; }
+      
+      /* 「め」 */
+      .draw-path.path-9 { animation-delay: 1.25s; animation-duration: 0.25s;}
+      .draw-path.path-10 { animation-delay: 1.4s; animation-duration: 0.5s; }
+      
+      /* 「る」：最後のハネまで粘る */
+      .draw-path.path-11 { animation-delay: 1.85s; animation-duration: 0.55s; }
+      
+      /* --- ここで一呼吸（完全なタメ） --- */
+
+      /* 「アニマル」：新しい気持ちで書き出す */
+      .draw-path.path-12 { animation-delay: 2.65s; animation-duration: 0.35s; } 
+      .draw-path.path-13 { animation-delay: 2.9s; animation-duration: 0.4s; }
+      
+      /* 「ニ」 */
+      .draw-path.path-14 { animation-delay: 3.2s; animation-duration: 0.2s; }
+      .draw-path.path-15 { animation-delay: 3.3s; animation-duration: 0.2s; }
+      .draw-path.path-16 { animation-delay: 3.45s; animation-duration: 0.35s; }
+      
+      /* 「マ」 */
+      .draw-path.path-17 { animation-delay: 3.7s; animation-duration: 0.2s; }
+      .draw-path.path-18 { animation-delay: 3.85s; animation-duration: 0.4s; }
+      
+      /* 「ル」 */
+      .draw-path.path-19 { animation-delay: 4.15s; animation-duration: 0.45s; }
+
+      .hero p { font-size: clamp(0.9rem, 1.5vw, 1.1rem); color: var(--text-color); margin-bottom: 2.5rem; max-width: 600px; line-height: 1.8; margin-left: auto; margin-right: auto; }
+
+      /* マイクロコピー（操作のヒント） */
+      .interaction-hint {
+        font-size: 0.75rem !important; /* 他のテキストより明確に小さくする */
+        color: #888888 !important; /* 薄いグレーにして背景に馴染ませる */
+        letter-spacing: 0.15em;
+        margin-top: 1rem;
+        /* ゆっくりと明滅させて視線を誘導する */
+        animation: pulseHint 3s ease-in-out infinite alternate;
+        pointer-events: none; /* テキスト自体が邪魔にならないようにする */
+      }
+
+      @keyframes pulseHint {
+        0% { opacity: 0.3; }
+        100% { opacity: 0.8; }
+      }
+
+
+      .hero-animal-wrapper {
+        position: absolute;
+        opacity: 0;
+        z-index: 1;
+        /* 座標の基準点を要素の左上から中心に補正する */
+        transform: translate(-50%, -50%);
+        transform-origin: center center;
+      }
+
+      /* JSで準備が完了した要素だけフェードインさせる */
+      .hero-animal-wrapper.is-ready {
+        animation: gatherAnim 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
+      }
+
+      .hero-animal {
+        background-color: transparent;
+        border-radius: 0;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+        transition: transform 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        will-change: transform;
+      }
+
+
+      /* 後景（奥・小さめ・少しボケる） */
+      .depth-bg { z-index: 2; width: 100px; height: 100px; }
+      .depth-bg .hero-animal {
+        filter: blur(3px);
+        opacity: 0.8;
+      }
+
+      /* 中景（ピントが合う・標準サイズ） */
+      .depth-mg { z-index: 8; width: 180px; height: 180px; }
+      .depth-mg .hero-animal {
+        filter: blur(0);
+      }
+
+      /* 前景（手前・大迫力・強くボケる） */
+      .depth-fg { z-index: 20; width: 400px; height: 400px; pointer-events: none; }
+      .depth-fg .hero-animal {
+        filter: blur(8px);
+        pointer-events: auto;
+      }
+
+      @keyframes gatherAnim {
+        0% {
+          opacity: 0;
+          /* 中心補正(-50%)を維持しつつスタート位置を適用 */
+          transform: translate(calc(-50% + var(--start-x, 0px)), calc(-50% + var(--start-y, 0px))) scale(0.8);
+        }
+        100% {
+          opacity: 1;
+          /* 完了時も中心補正(-50%, -50%)を維持する（0, 0 で上書き消去しない！） */
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      @media (max-width: 768px) {
+        .depth-bg { width: 70px; height: 70px; }
+        .depth-mg { width: 120px; height: 120px; }
+        .depth-fg { width: 220px; height: 220px; }
+        .depth-bg .hero-animal { filter: blur(2px); }
+        .depth-fg .hero-animal { filter: blur(4px); }
+        .hero-title-svg { width: 280px; }
+
+        /* スマホでのスクロール描画負荷を軽減するため、重い filter(blur) 効果を無効化 */
+        .depth-bg .hero-animal,
+        .depth-mg .hero-animal,
+        .depth-fg .hero-animal {
+          filter: none !important;
+        }
+        .hero {
+          will-change: opacity, transform; /* filterを削除 */
+        }
+
+        /* スマホは指で画面が隠れるため、懐中電灯の光の半径を80pxから120pxへ拡大する */
+        :global(body.is-dark) .hero-animal {
+          -webkit-mask-image: radial-gradient(circle 120px at var(--light-x, -100px) var(--light-y, -100px), black 0%, transparent 100%) !important;
+          mask-image: radial-gradient(circle 120px at var(--light-x, -100px) var(--light-y, -100px), black 0%, transparent 100%) !important;
+        }
+      }
+      .order-section {
+        background-color: #e9edc9;
+        border-radius: 16px;
+        padding: 3rem 2rem;
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+      .step-ui {
+        margin-top: 2rem;
+        padding: 2rem;
+        background: rgba(255,255,255,0.6);
+        border-radius: 12px;
+      }
+      .btn {
+        display: inline-block;
+        background-color: var(--accent-green);
+        color: #fff;
+        padding: 1rem 2rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-family: inherit;
+        font-weight: 700;
+        transition: transform 0.2s, background-color 0.2s, box-shadow 0.2s;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        box-shadow: 0 4px 10px rgba(0, 163, 129, 0.2);
+      }
+      .btn:hover {
+        background-color: var(--accent-yellow);
+        color: #333;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(255, 196, 0, 0.3);
+      }
+      .gallery-wrapper {
+        height: 450vh !important; /* 18点に合わせてスクロール距離を延長 */
+        position: relative;
+        background-color: #f7f7f7;
+        padding-bottom: 20vh;
+      }
+
+      .gallery-sticky-container {
+        position: sticky;
+        top: 0;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 2vh; /* 6vhからさらに限界まで縮小 */
+        background-color: transparent;
+      }
+
+      .gallery-header {
+        position: relative;
+        top: auto;
+        left: auto;
+        z-index: 10;
+        width: 100%;
+        padding: 0 5vw;
+        margin-bottom: 5vh; /* 作品群との間隔 */
+        pointer-events: none;
+      }
+
+      .gallery-track {
+        display: flex;
+        gap: 6rem;
+        padding: 0 50vw;
+        width: max-content;
+        will-change: transform;
+        align-items: center;
+      }
+
+      /* ギャラリー展示風のカードデザイン */
+      .animal-card {
+        background: #ffffff;
+        padding: 1.2rem 1.2rem 1.6rem;
+        text-align: center;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.08), 0 5px 15px rgba(0,0,0,0.03);
+        width: 240px;
+        flex-shrink: 0;
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        position: relative; /* バッジ配置の基準にするため追加 */
+        overflow: visible !important; /* バッジのはみ出しを切らないようにする */
+      }
+
+      /* カード全体をまとめるコンテナ（旧：.animal-card-link） */
+      .animal-card-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      /* イラストとオーバーレイを囲むコンテナ */
+      .animal-card-inner {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 1/1;
+        border-radius: 8px;
+        margin-bottom: 1.5rem; /* 作品名との間隔 */
+        overflow: hidden; /* オーバーレイのはみ出し防止 */
+      }
+
+      /* イラスト */
+      .animal-img {
+        width: 100%;
+        height: 100%; /* コンテナいっぱいに広げる */
+        background: #f0f0f0;
+        border-radius: 0; /* 親コンテナで管理 */
+        margin-bottom: 0; /* 親コンテナで管理 */
+        /* キャンバスの質感をダミーで追加 */
+        background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.1) 0px, rgba(255,255,255,0.1) 2px, transparent 2px, transparent 4px);
+        /* ホバー時の色変化用の transition */
+        transition: filter 0.3s ease;
+      }
+
+      /* ホバー時のオーバーレイ（金額テキスト） */
+      .animal-card-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.4); /* 背景を少し暗くしてテキストを際立たせる */
+        color: #ffffff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 500;
+        letter-spacing: 0.1em;
+        opacity: 0; /* 初期状態は非表示 */
+        transform: translateY(10px); /* 初期位置を少し下にする */
+        transition: opacity 0.3s ease, transform 0.3s ease;
+        pointer-events: none; /* テキストのクリックを無視 */
+      }
+
+      /* 作品名テキスト */
+      .animal-card-name {
+        font-family: inherit;
+        font-size: 0.95rem; /* 少し大きくして見やすく */
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        color: var(--text-color);
+        margin: 0;
+      }
+
+      /* 画材テキスト（新規追加） */
+      .animal-card-material {
+        font-family: inherit;
+        font-size: 0.8rem;
+        letter-spacing: 0.05em;
+        color: #888888;
+        margin: 0.3rem 0 0 0;
+      }
+
+      /* サイズテキスト（新規追加） */
+      .animal-card-size {
+        font-family: inherit;
+        font-size: 0.7rem;
+        letter-spacing: 0.05em;
+        color: #aaaaaa;
+        margin: 0.1rem 0 0 0;
+      }
+
+      /* ホバー時の動作 */
+
+      /* 1. イラストの色を少し変える */
+      .animal-card:hover .animal-img {
+        filter: brightness(1.1); /* 少し明るく */
+      }
+
+      /* 2. 「詳細を見る」テキストを表示する */
+      .animal-card:hover .animal-card-overlay {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* 既存の .animal-card:hover の動き（scale, translate, shadow）は維持する */
+      .animal-card:hover {
+        transform: scale(1.02) translateY(-10px);
+        box-shadow: 0 25px 50px rgba(0,0,0,0.12), 0 10px 20px rgba(0,0,0,0.05);
+      }
+
+      /* ギャラリー最後のコンタクトカード */
+      .gallery-contact-card {
+        background: #f7f9f2; /* 作品カードと区別するため淡い色に設定 */
+        padding: 3rem 2rem;
+        text-align: center;
+        border-radius: 12px;
+        width: 280px;
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.5rem;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      }
+      .gallery-contact-card h3 {
+        font-family: inherit;
+        font-size: 1.1rem;
+        color: var(--accent-green);
+        margin: 0;
+        letter-spacing: 0.05em;
+      }
+      .gallery-contact-card p {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        color: #555;
+        margin: 0;
+      }
+      .gallery-contact-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: #fff;
+        color: var(--accent-green);
+        border: 2px solid var(--accent-green);
+        padding: 0.8rem 1.5rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.95rem;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .gallery-contact-btn:hover {
+        background-color: var(--accent-green);
+        color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 163, 129, 0.2);
+      }
+      .gallery-contact-btn svg {
+        width: 18px;
+        height: 18px;
+        fill: currentColor;
+      }
+
+      /* スマホ表示時の調整 */
+      @media (max-width: 768px) {
+        .gallery-contact-card {
+          width: 240px;
+          padding: 2.5rem 1.5rem;
+          scroll-snap-align: center;
+        }
+        .animal-card { 
+          width: 192px; /* 既存の 240px から80%へ縮小 */
+          padding: 1rem 1rem 1.2rem; /* スマホ向けに余白も調整 */
+        }
+        .animal-card-name { font-size: 0.8rem; }
+        .animal-card-overlay { font-size: 0.9rem; }
+        .gallery-header {
+          margin-top: 0; /* スマホ向け：上空きを詰める */
+          margin-bottom: 2rem;
+        }
+        .gallery-header .section-title {
+          text-align: left; /* スマホ向け：見出しを左揃えにする */
+        }
+        .gallery-track { 
+          gap: 3rem; 
+        }
+        .gallery-wrapper {
+          height: 180vh !important; /* スマホは横スクロールの総距離が短いため、高さを300vhから圧縮 */
+          padding-bottom: 10vh; /* PC用の20vhから50%に縮小 */
+        }
+      }
+
+
+      .fade-in-up {
+        opacity: 0;
+        /* 下からの移動距離を伸ばし、勢いをつける（40px -> 100px） */
+        transform: translateY(100px); 
+        /* バネのように行き過ぎて戻る特殊なcubic-bezierを適用 */
+        transition: opacity 0.6s ease-out, transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+      .fade-in-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .section-title {
+        /* definition moved up */
+      }
+      section:not(.hero) {
+        position: relative;
+        z-index: 20;
+        background-color: var(--bg-color);
+        box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.03);
+        padding-top: 4.5rem; /* 6.4remから縮小し、全体の間延びを解消 */
+        border-radius: 80px 80px 0 0;
+        margin-top: -80px; /* 角丸の半径(80px)以上重ねて背後の透けを防止 */
+      }
+      .hero + section {
+        margin-top: 0; /* ヒーロー直後のセクションは重ねない */
+      }
+
+      /* オーダーボックスの調整（濃い緑の背景に馴染むように） */
+      .profile-order-box {
+        margin-top: 3rem;
+        padding: 3rem 2rem;
+        background: rgba(255, 255, 255, 0.15); /* 半透明の白に変更 */
+        border-radius: 16px;
+        text-align: center;
+      }
+      .profile-order-box h3 {
+        font-family: inherit;
+        font-size: 1.4rem;
+        color: #ffffff; /* 白に変更 */
+        margin-bottom: 1rem;
+      }
+      .profile-order-box p {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: #ffffff; /* 白に変更 */
+        margin-bottom: 2rem;
+      }
+
+      /* Instagramボタンの配色反転（背景と同化するのを防ぐ） */
+      .instagram-link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        background-color: #ffffff; /* 白背景に変更 */
+        color: var(--accent-green); /* 緑文字に変更 */
+        padding: 1rem 2.5rem;
+        border-radius: 40px;
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 1.1rem;
+        transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      }
+      .instagram-link-btn:hover {
+        background-color: var(--accent-yellow);
+        color: #333;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+      }
+      .instagram-link-btn .instagram-icon {
+        width: 24px;
+        height: 24px;
+        fill: currentColor;
+      }
+
+      @keyframes fluidBlob {
+        0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+        100% { border-radius: 40% 60% 50% 60% / 40% 50% 60% 40%; }
+      }
+      .site-logo {
+        position: fixed;
+        top: 1.5rem;
+        left: 1.5rem;
+        z-index: 200;
+        font-family: "a-otf-koburina-gothic-pr6n", "Koburina Gothic", "Zen Kaku Gothic New", "Hiragino Sans", "ヒラギノ角ゴ ProN", "Yu Gothic", sans-serif;
+        font-weight: 700;
+        font-size: 1.2rem;
+        line-height: 1.3;
+        letter-spacing: 0.05em;
+        color: var(--text-color);
+        text-decoration: none;
+        transition: opacity 0.2s, transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        /* すりガラス効果 */
+        padding: 0.8rem 1.2rem;
+        background-color: rgba(252, 252, 252, 0.65);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 12px;
+      }
+      .site-logo:hover {
+        color: var(--accent-green);
+      }
+      @media (max-width: 768px) {
+        .site-logo {
+          font-size: 1rem;
+          top: 1.2rem;
+          left: 1.2rem;
+        }
+      }
+
+      .hamburger, .site-logo {
+        transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
+      }
+      .side-nav {
+        transition: right 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.4s ease;
+      }
+      .nav-hidden {
+        opacity: 0 !important;
+        pointer-events: none;
+        transform: translateY(-20px);
+      }
+      .side-nav.nav-hidden {
+        transform: translateX(30px);
+      }
+
+      /* セクション全体の背景を濃い緑に変更 */
+      .profile-section {
+        background-color: var(--accent-green) !important; /* キーカラーに変更 */
+        padding: 6.4rem 2rem 10rem;
+        margin-top: -80px; 
+        width: 100%;
+        position: relative;
+        z-index: 20;
+        border-radius: 80px 80px 0 0;
+        box-sizing: border-box;
+      }
+      .profile-card {
+        background-color: transparent;
+        border-radius: 0;
+        padding: 0;
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        box-shadow: none;
+      }
+      /* プロフィールテキストをすべて白抜きに変更 */
+      .profile-title {
+        font-size: 1.1rem;
+        letter-spacing: 0.1em;
+        margin: 0;
+        color: #ffffff; /* 白に変更 */
+        line-height: 1.4;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .profile-name {
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 3.2rem;
+        margin-left: 0;
+        margin-top: -0.2rem;
+        color: #ffffff; /* 白に変更 */
+        letter-spacing: 0.05em;
+        font-weight: 700;
+      }
+      .profile-desc {
+        text-align: left;
+      }
+      .profile-desc p {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+        line-height: 2;
+        color: #ffffff; /* 白に変更 */
+      }
+
+      @media (max-width: 768px) {
+        .profile-section {
+          padding: 5rem 1.5rem 8rem;
+        }
+        .profile-card {
+          padding: 0;
+        }
+        .profile-title {
+          font-size: 0.95rem; /* スマホでも小さめ */
+        }
+        .profile-name {
+          font-size: 2.6rem; /* スマホでもしっかり大きく */
+        }
+      }
+
+      .floating-mail-btn {
+        position: fixed;
+        bottom: 2rem;
+        right: 2rem;
+        width: 64px;
+        height: 64px;
+        background-color: rgba(0, 163, 129, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        box-shadow: 0 4px 15px rgba(0, 163, 129, 0.3);
+        z-index: 150;
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s, box-shadow 0.3s;
+        overflow: visible;
+      }
+      .floating-tooltip {
+        position: absolute;
+        bottom: calc(100% + 15px);
+        right: 0;
+        transform-origin: bottom right;
+        transform: scale(0);
+        background-color: rgba(255, 196, 0, 0.9);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        color: #333;
+        padding: 0.8rem 1.2rem;
+        font-family: inherit;
+        font-weight: 500;
+        font-size: 0.9rem;
+        white-space: nowrap;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(255, 196, 0, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        pointer-events: none;
+        z-index: 10;
+      }
+      .floating-tooltip::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        right: 24px;
+        border-width: 8px;
+        border-style: solid;
+        border-color: rgba(255, 196, 0, 0.9) transparent transparent transparent;
+      }
+      .floating-mail-btn:hover .floating-tooltip {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1) translateY(-5px);
+      }
+      .floating-mail-btn:hover {
+        transform: translateY(-5px) scale(1.1);
+        background-color: rgba(255, 196, 0, 0.9);
+        box-shadow: 0 6px 20px rgba(255, 196, 0, 0.4);
+      }
+      .floating-mail-btn svg {
+        width: 32px;
+        height: 32px;
+        fill: #ffffff;
+        transition: transform 0.3s;
+      }
+      .floating-mail-btn:hover svg {
+        transform: scale(1.1);
+      }
+      @media (max-width: 768px) {
+        .floating-mail-btn {
+          bottom: 1.5rem;
+          right: 1.5rem;
+          width: 56px;
+          height: 56px;
+        }
+        .floating-mail-btn svg {
+          width: 28px;
+          height: 28px;
+        }
+      }
+
+      /* Removed duplicate section:not(.hero) declaration to ensure consistency with Step 1 */
+      .hero + section {
+        margin-top: 0; /* ヒーロー直後のセクションは重ねない */
+      }
+
+      .concept-section {
+        background-color: #ffffff;
+        position: relative;
+        z-index: 5;
+        /* 下のセクションが -80px (約5rem) 食い込んでくるため、相殺してコンテンツを守るための余白を追加 */
+        padding-bottom: 10rem; 
+        margin-bottom: 0; 
+      }
+      @media (max-width: 768px) {
+        .concept-section {
+          padding-bottom: 4rem; /* スマホ向け：下部余白を詰める */
+          margin-bottom: 2rem;  /* スマホ向け：ギャラリーとの余白を詰める */
+        }
+      }
+
+      .concept-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 4rem;
+        max-width: 1000px;
+        flex-direction: row-reverse; /* PC表示時に画像とテキストを左右反転させる */
+      }
+
+      /* パペットコンテナ全体 */
+      .monkey-puppet-container {
+        position: relative;
+        flex: 1;
+        max-width: 100%;
+        margin-right: -4rem; /* テキストとの間隔調整 */
+        will-change: transform;
+        transform-style: preserve-3d;
+      }
+
+      /* 胴体 */
+      .monkey-body {
+        width: 100%;
+        height: auto;
+        display: block;
+        position: relative; 
+        z-index: 2; /* 脚より手前に表示 */
+      }
+
+      /* 2本の脚をまとめるラッパー */
+      .monkey-legs-wrapper {
+        position: absolute; 
+        z-index: 1; /* 胴体の奥（背後）に表示 */
+        
+        /* topの数値を大きくして位置を下げる */
+        top: 90%;  
+        left: 23%; 
+        width: 20%; 
+        
+        display: flex;
+        justify-content: space-between;
+      }
+
+      /* 各脚の共通スタイル */
+      .monkey-leg {
+        width: 45%; 
+        height: auto;
+        transform-origin: 50% 5%; 
+        /* 3.5sから1.8sに短縮し、ゆらゆら感を強調 */
+        animation: swingMonkeyLeg 1.8s ease-in-out infinite alternate;
+        transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+        will-change: transform;
+        transform: perspective(1000px) rotateX(0deg); 
+      }
+
+      /* 右足専用：タイミングと支点を少しずらす */
+      .monkey-leg.leg-right {
+        /* アニメーションの高速化に合わせてディレイも調整 */
+        animation-delay: -0.8s; 
+        transform-origin: 50% 2%;
+      }
+
+      /* 振り子アニメーション */
+      @keyframes swingMonkeyLeg {
+        /* 揺れ幅を少し大きくして視認性を高める (-5deg〜10deg -> -8deg〜12deg) */
+        0% { transform: rotate(-8deg); } 
+        100% { transform: rotate(12deg); }
+      }
+
+      /* --- ここから追加：ホバー時の処理 --- */
+      
+      /* 足にマウスが近づいた際（JSでクラス付与）、
+         JSのtransform計算と干渉しないようCSSアニメーションを完全に無効化する */
+      .monkey-leg.is-repelling {
+        animation: none !important;
+      }
+      
+      /* --- ここまで追加 --- */
+
+      .concept-text {
+        flex: 1;
+      }
+
+      .concept-text h2 {
+        font-size: clamp(1.6rem, 3vw, 2.2rem);
+        margin-bottom: 2rem;
+        color: var(--text-color);
+      }
+
+      .concept-text p {
+        font-size: 1.05rem;
+        line-height: 2;
+        margin-bottom: 1.5rem;
+        color: #555555;
+      }
+
+      @media (max-width: 768px) {
+        .concept-container {
+          flex-direction: column; /* スマホ表示時は通常の縦並び（画像が上）に戻す */
+          gap: 2.5rem;
+        }
+        .monkey-puppet-container {
+          margin-right: 0;
+          width: 100%;
+        }
+      }
+
+      /* --- スマートフォンでの自然なテキスト改行調整 --- */
+      h1, h2, h3, p {
+        /* 最新ブラウザ向け：単語の途中（例:「イラ/ストレーター」）での不自然な改行を防ぐ */
+        word-break: auto-phrase;
+        /* 最後の行が1文字だけになる（孤立単語）のを防ぐ */
+        text-wrap: pretty;
+      }
+
+      @media (max-width: 768px) {
+        section:not(.hero), .profile-section {
+          border-radius: 40px 40px 0 0;
+        }
+        section[data-astro-cid-j7pv25f6]:not(.hero) {
+          /* margin-top: -20px; */ /* padding-topで間延び解消するため削除 */
+        }
+        section:not(.hero) {
+          margin-top: -20px;
+          padding-top: 3rem; /* PC用の6.4remから縮小し、間延びした空間を詰める */
+        }
+        .hero + section {
+          margin-top: 0;
+        }
+
+        /* モバイル表示時：PCレイアウト用の固定改行タグ（<br>）を無効化し、コンテナ幅に合わせて自然に折り返す */
+        .hero h1 br, 
+        .hero p br,
+        section:not(.hero) h2 br, 
+        section:not(.hero) p br {
+          display: none;
+        }
+
+        /* モバイル専用の改行は表示する */
+        .sp-br {
+          display: block !important;
+        }
+        
+        /* モバイル表示時：テキストが画面の端に張り付かないよう左右の余白を確保 -> 既存の p 余白をリセット */
+        p {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+
+        /* 代わりに、テキストを囲む親コンテナに共通の左右余白（1.5rem）を指定して縦のラインを完全に揃えます */
+        .hero-text-container,
+        .concept-text,
+        .gallery-header {
+          padding: 0 1.5rem;
+        }
+
+        /* 間延びした空間を詰めるため、concept-section の下部余白を極限まで削ります */
+        .concept-section {
+          padding-bottom: 2rem;
+          margin-bottom: 0; 
+        }
+
+        /* ギャラリー開始時の文字位置を上部へ固定し、画面中央の不自然な空白を防ぎます */
+        .gallery-sticky-container {
+          justify-content: flex-start;
+          padding-top: 9vh; /* 15vh の 60% */
+          padding-bottom: 3vh; /* 5vh の 60% */
+        }
+      }
+
+      /* --- モバイル特有の余白・レイアウト崩れの強制修正（詳細度上書き） --- */
+      @media (max-width: 768px) {
+        /* 1. セクション共通の間延びをカットしつつ、角丸(40px)の透けを防止 */
+        section:not(.hero) {
+          margin-top: -40px !important;
+          padding-top: 3.5rem !important; /* 5remから縮小してスマホでもスッキリさせる */
+        }
+
+        /* 2. コンセプトセクション下部の空間を調整 */
+        .concept-section {
+          /* スマホは食い込みが -40px (約2.5rem) なので、その分を考慮して余白を確保 */
+          padding-bottom: 5.5rem !important; 
+          margin-bottom: 0 !important;
+        }
+
+        /* 3. ギャラリー：スマホでは縦スクロール連動を解除し、自然な横スワイプに変更して高さを最適化 */
+        section#gallery.gallery-wrapper {
+          height: auto !important; 
+          padding-bottom: 0 !important;
+          background-color: #f7f7f7 !important;
+          width: 100% !important; /* 100vwは横揺れの原因になるため100%で画面幅に固定 */
+          overflow-x: hidden !important; /* 画面外へのはみ出しを強制カット */
+          box-sizing: border-box;
+        }
+        div.gallery-sticky-container {
+          position: relative !important; 
+          height: auto !important; 
+          padding-top: 0 !important;
+          padding-bottom: 3rem !important;
+          width: 100% !important;
+          box-sizing: border-box;
+        }
+        .gallery-header {
+          margin-bottom: 1.5rem !important;
+          width: 100% !important;
+          box-sizing: border-box;
+        }
+        .gallery-track {
+          transform: none !important; 
+          width: 100% !important; 
+          padding: 1rem 1.5rem 2rem 1.5rem !important; 
+          overflow-x: auto !important; /* トラック自体はスクロール可能にする */
+          scroll-snap-type: x mandatory; 
+          -webkit-overflow-scrolling: touch;
+          gap: 1.5rem !important;
+          box-sizing: border-box;
+        }
+        /* スクロールバーを非表示にしてスッキリさせる */
+        .gallery-track::-webkit-scrollbar {
+          display: none;
+        }
+        .animal-card {
+          scroll-snap-align: center;
+        }
+
+        /* 4. オーダーセクションとの接続を滑らかに */
+        section.order-section {
+          padding-top: 5rem !important;
+          padding-bottom: 6rem !important;
+          margin-top: -40px !important; /* 0 から -40px へ修正 */
+        }
+
+        /* プロフィールセクションの被りを追加 */
+        .profile-section {
+          margin-top: -40px !important;
+        }
+        
+        /* 5. 見出しと段落の左端を完全に揃える（過去のパディング指定を強制リセット） */
+        h1, h2, h3, p {
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+        .hero-text-container,
+        .concept-text,
+        .gallery-header {
+          padding-left: 1.5rem !important;
+          padding-right: 1.5rem !important;
+        }
+      }
+
+      /* スワイプヒント（基本はPC向けに非表示） */
+      .swipe-hint-mobile {
+        display: none; 
+      }
+
+      /* スマホ表示時の上書き設定（必ず基本設定より後に記述する） */
+      @media (max-width: 768px) {
+        .swipe-hint-mobile {
+          display: flex; 
+          align-items: center;
+          gap: 0.5rem;
+          margin-top: 1.5rem;
+          color: var(--accent-green);
+          font-size: 0.85rem;
+          font-weight: 700;
+          letter-spacing: 0.1em;
+          animation: swipePointerAnim 2s infinite ease-in-out;
+        }
+        .swipe-hint-mobile svg {
+          fill: currentColor;
+        }
+        @keyframes swipePointerAnim {
+          0%, 100% { transform: translateX(0); }
+          50% { transform: translateX(10px); }
+        }
+      }
+
+      /* ==========================================
+         サイトフッター
+      ========================================== */
+      .site-footer {
+        background-color: var(--text-color); /* ダークな背景 */
+        color: rgba(255, 255, 255, 0.7);
+        padding: 3rem 2rem 2rem;
+        position: relative;
+        z-index: 20;
+      }
+
+      .footer-content {
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .legal-notice h4 {
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        margin-bottom: 0.8rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .legal-notice p {
+        font-size: 0.78rem;
+        line-height: 1.8;
+        color: rgba(255, 255, 255, 0.55);
+        margin-bottom: 0.5rem;
+      }
+
+      .copyright {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.3);
+        text-align: center;
+        letter-spacing: 0.05em;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+        margin: 0;
+      }
+
+      /* 売り切れバッジ */
+      .sold-out-badge {
+        position: absolute;
+        top: -15px; /* カードの外側にはみ出させる。文字数増に対応して少し上に */
+        left: -15px;
+        background-color: #e74c3c; /* 赤系 */
+        color: #ffffff;
+        font-size: 0.65rem; /* 文字数増に対応してわずかに小さく */
+        font-weight: 700;
+        padding: 0.4em 1em; /* 横長の文字に合わせた余白調整 */
+        border-radius: 20px;
+        z-index: 5; /* 画像の上に表示 */
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        letter-spacing: 0.05em;
+        white-space: nowrap; /* 改行を防ぐ */
+      }
+
+      /* 部屋に飾ったイメージ画像のパネル */
+      .room-view-card {
+        background: #ffffff;
+        padding: 1.2rem;
+        border-radius: 12px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        width: 320px; /* 横幅をポスターサイズに凝縮 */
+        height: auto; /* 100%からautoに変更し、下部の無駄な空白を完全消去 */
+        flex-shrink: 0;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      /* PC環境ではアイコンを完全に非表示にする */
+      .swipe-indicator-right {
+        display: none;
+      }
+      .room-view-img {
+        width: 100%;
+        height: 400px; /* 縦の長さを強調 */
+        object-fit: cover;
+        border-radius: 8px;
+      }
+      .room-view-text {
+        padding: 1.2rem 1rem 0.2rem; /* 上(1.5->1.2)と下(0.5->0.2)の余白を詰め、間延びを解消 */
+        text-align: center;
+      }
+      .room-view-text p {
+        font-family: inherit;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        line-height: 1.5; /* 1.8から縮小して2行時の間延びを抑える */
+        color: var(--accent-green);
+        margin: 0;
+      }
+
+      /* スマホ表示時の調整（既存のメディアクエリ内を上書き） */
+      @media (max-width: 768px) {
+        .room-view-card {
+          width: 280px; /* モバイルでも縦長感を維持 */
+          scroll-snap-align: center;
+        }
+        .room-view-img {
+          height: 380px; /* スマホでも高さを確保 */
+        }
+        .room-view-text p {
+          font-size: 0.9rem;
+        }
+
+        /* スマホ環境でのみアイコンを表示し、カード右横に配置 */
+        .swipe-indicator-right {
+          display: flex;
+          position: absolute;
+          right: -1.2rem; /* カードの外側、gapの空間に配置 */
+          top: 50%;
+          transform: translateY(-50%);
+          width: 36px;
+          height: 36px;
+          background: var(--accent-green);
+          color: #fff;
+          border-radius: 50%;
+          justify-content: center;
+          align-items: center;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+          z-index: 10;
+          animation: swipeRightBounce 1.5s infinite;
+        }
+        
+        .swipe-indicator-right svg {
+          width: 20px;
+          height: 20px;
+          margin-left: 2px; /* 矢印を視覚的に中央に寄せる */
+        }
+
+        @keyframes swipeRightBounce {
+          0%, 100% { transform: translateY(-50%) translateX(0); }
+          50% { transform: translateY(-50%) translateX(6px); }
+        }
+      }
+
+      /* ==========================================
+         キャンバスサイズ・アニメーション
+      ========================================== */
+      .canvas-size-section {
+        background-color: #ffffff;
+        padding-bottom: 8rem;
+        position: relative;
+        z-index: 15;
+      }
+      .canvas-anim-wrapper {
+        perspective: 1000px; /* 立体感を出すための視点距離 */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 4rem 0 6rem; /* 寸法線が表示される余白を確保 */
+        position: relative; /* 丸の絶対配置の基準にするため追加 */
+      }
+
+      .canvas-3d-box {
+        position: relative;
+        width: 220px;
+        height: 273px;
+        transform-style: preserve-3d;
+        /* アニメーション開始時：下からポップアップ（影なし） */
+        opacity: 0;
+        transform: rotateY(-45deg) rotateX(10deg) translateY(50px) scale(0.8);
+        box-shadow: none;
+      }
+
+      /* アニメーション（ intersection-observer用） --- */
+      .canvas-size-section.is-visible .canvas-3d-box {
+        animation: boxAppear 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      }
+
+      @keyframes boxAppear {
+        to {
+          opacity: 1;
+          transform: rotateY(-45deg) rotateX(10deg) translateY(0) scale(1);
+          box-shadow: -10px 15px 30px rgba(0,0,0,0.1); /* 影を追加 */
+        }
+      }
+
+      /* 表面パネル（影を消す） */
+      .c-front {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: #fcfcfc;
+        border: 2px solid #e0e0e0;
+        border-right: none; /* 側面と結合するため右ボーダーなし */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 3rem;
+        color: #eeeeee;
+        font-weight: 700;
+        box-shadow: none; /* 表面自体の影を削除 */
+        transform: translateZ(15px);
+      }
+
+      /* 1. 厚みの側面を擬似要素で表面の右端に完全に密着させる（離れて見えないように） --- */
+      .c-front::after {
+        content: '';
+        position: absolute;
+        top: -2px; /* ボーダー分調整 */
+        bottom: -2px; /* ボーダー分調整 */
+        right: -15px; /* 厚み分 */
+        width: 15px; /* 厚み分 */
+        background-color: #e8e8e8;
+        border: 2px solid #e0e0e0;
+        border-left: none; /* 表面と結合するため左ボーダーなし */
+        /* 手前を軸に奥へ回転 */
+        transform-origin: left;
+        transform: rotateY(90deg);
+      }
+
+      /* 各寸法線の共通設定 */
+      .dim-line-y,
+      .dim-line-x {
+        position: absolute;
+        background-color: var(--accent-green);
+        opacity: 0;
+      }
+
+      .dim-text-y,
+      .dim-text-x {
+        position: absolute;
+        color: var(--accent-green);
+        font-family: inherit;
+        font-weight: 700;
+        font-size: 1.05rem;
+        opacity: 0;
+        white-space: nowrap;
+        letter-spacing: 0.05em;
+        transform: scale(0);
+      }
+
+      /* アニメーション時 */
+      .canvas-size-section.is-visible .dim-line-y,
+      .canvas-size-section.is-visible .dim-line-x {
+        opacity: 1;
+      }
+
+      /* Y軸（縦）寸法線 */
+      .dim-line-y {
+        left: -30px;
+        top: 0;
+        width: 2px;
+        height: 0; /* アニメーション用 */
+        transform: translateZ(15px);
+      }
+      .dim-line-y::before,
+      .dim-line-y::after {
+        content: '';
+        position: absolute;
+        left: -4px;
+        width: 10px;
+        height: 2px;
+        background: inherit;
+      }
+      .dim-line-y::before { top: 0; }
+      .dim-line-y::after { bottom: 0; }
+
+      .dim-text-y {
+        left: -120px;
+        top: 50%;
+        transform: translateY(-50%) scale(0) translateZ(15px);
+      }
+
+      /* X軸（横）寸法線 */
+      .dim-line-x {
+        bottom: -30px;
+        left: 0;
+        height: 2px;
+        width: 0; /* アニメーション用 */
+        transform: translateZ(15px);
+      }
+      .dim-line-x::before,
+      .dim-line-x::after {
+        content: '';
+        position: absolute;
+        top: -4px;
+        width: 2px;
+        height: 10px;
+        background: inherit;
+      }
+      .dim-line-x::before { left: 0; }
+      .dim-line-x::after { right: 0; }
+
+      .dim-text-x {
+        bottom: -65px;
+        left: 50%;
+        transform: translateX(-50%) scale(0) translateZ(15px);
+      }
+
+      /* 厚み表示（丸デザイン） */
+      .depth-circle {
+        position: absolute;
+        right: 15%; /* 右側に配置 */
+        top: 50%;
+        transform: translateY(-50%) scale(0);
+        width: 85px;
+        height: 85px;
+        background-color: rgba(0, 163, 129, 0.1); /* 薄い緑 */
+        border: 2px solid var(--accent-green);
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: var(--accent-green);
+        font-family: inherit;
+        font-weight: 700;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        letter-spacing: 0.05em;
+        opacity: 0;
+        z-index: 10;
+      }
+
+      .canvas-size-section.is-visible .depth-circle {
+        /* 縦・横の寸法が出た後、最後にポコッと現れる */
+        animation: popCircle 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 2.2s;
+      }
+
+      @keyframes popCircle {
+        to { opacity: 1; transform: translateY(-50%) scale(1); }
+      }
+
+      /* Y軸（縦）寸法線 */
+      .canvas-size-section.is-visible .dim-line-y {
+        animation: drawY 0.4s ease forwards 0.8s;
+      }
+      .canvas-size-section.is-visible .dim-text-y {
+        animation: popText 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 1.1s;
+      }
+
+      @keyframes drawY { to { height: 100%; } }
+
+      /* X軸（横）寸法線 */
+      .canvas-size-section.is-visible .dim-line-x {
+        animation: drawX 0.4s ease forwards 1.5s;
+      }
+      .canvas-size-section.is-visible .dim-text-x {
+        animation: popTextX 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards 1.8s;
+      }
+
+      @keyframes drawX { to { width: 100%; } }
+      @keyframes popTextX { to { opacity: 1; transform: translateX(-50%) scale(1) translateZ(15px); } }
+
+      /* X/Yテキストポップ（共通化） */
+      @keyframes popText { to { opacity: 1; transform: translateY(-50%) scale(1) translateZ(15px); } }
+      @media (max-width: 768px) {
+        .canvas-size-section {
+          padding-bottom: 4rem;
+        }
+        .canvas-3d-box {
+          transform: rotateY(-15deg) rotateX(5deg) translateY(30px) scale(0.75);
+        }
+        @keyframes boxAppear {
+          to { opacity: 1; transform: rotateY(-15deg) rotateX(5deg) translateY(0) scale(0.85); }
+        }
+        .dim-text-y { left: -90px; font-size: 0.9rem; }
+        .dim-text-x { bottom: -50px; font-size: 0.9rem; }
+        /* スマホ表示時の丸の位置・サイズ調整 */
+        .depth-circle {
+          right: 5%;
+          width: 70px;
+          height: 70px;
+          font-size: 0.75rem;
+        }
+      }
+
+      /* --- 暗闇モード スイッチ（ピル型UI・中央配置版） --- */
+      .dark-mode-switch {
+        position: relative;
+        margin: 0 auto; /* 上マージンをゼロにして直下に配置 */
+        z-index: 200;
+        pointer-events: auto; /* 親のhero-text-containerがpointer-events:noneのため必須 */
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(0,0,0,0.08);
+        padding: 0.8rem 1.5rem;
+        border-radius: 30px;
+        cursor: pointer;
+        color: #333;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.8rem;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      
+      /* 暗闇モード時のボタンデザイン反転と視線誘導アニメーション */
+      :global(body.is-dark) .dark-mode-switch {
+        background: rgba(30, 30, 30, 0.85);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #fff;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        animation: pillGlowPop 4s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+      }
+
+      @keyframes pillGlowPop {
+        0%, 85%, 100% {
+          transform: scale(1) translateY(0);
+          box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        90% {
+          transform: scale(1.08) translateY(-4px);
+          box-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 4px 15px rgba(0,0,0,0.3);
+        }
+        95% {
+          transform: scale(1.02) translateY(-1px);
+          box-shadow: 0 0 10px rgba(255, 255, 255, 0.3), 0 4px 15px rgba(0,0,0,0.3);
+        }
+      }
+      
+      .dark-mode-switch:hover {
+        transform: scale(1.05) translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      }
+
+      /* ホバー時はアニメーションを強制停止し、ホバースタイルを優先 */
+      :global(body.is-dark) .dark-mode-switch:hover {
+        animation: none !important;
+        box-shadow: 0 6px 20px rgba(255, 255, 255, 0.15);
+      }
+
+      .dark-mode-switch svg {
+        width: 20px;
+        height: 20px;
+        display: block;
+      }
+
+      .switch-text {
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        white-space: nowrap;
+      }
+
+      /* モード切替に伴うテキストとアイコンの表示・非表示ロジック */
+      .icon-moon, .text-dark-mode { display: none; }
+      .icon-sun, .text-light-mode { display: block; }
+      
+      :global(body.is-dark) .icon-sun,
+      :global(body.is-dark) .text-light-mode { display: none !important; }
+      :global(body.is-dark) .icon-moon,
+      :global(body.is-dark) .text-dark-mode { display: block !important; }
+      
+      @media (max-width: 768px) {
+        .dark-mode-switch {
+          margin: 0 auto;
+          padding: 0.6rem 1.2rem;
+        }
+        .switch-text { font-size: 0.8rem; }
+        .dark-mode-switch svg { width: 18px; height: 18px; }
+      }
+      
+      /* 注: これ以前にあった body:not(.is-dark) .hero-animal-wrapper:hover 関連のブロックは完全に削除しました */
+
+      /* --- 暗闇への遷移 --- */
+      body { transition: background-color 0.8s ease, color 0.8s ease; }
+      body.is-dark {
+        --bg-color: #0d1115; /* 漆黒に近い紺 */
+        --text-color: #e0e0e0;
+      }
+      
+      /* --- 追加：暗闇モードをヒーローエリアのみに限定 --- */
+      body.is-dark section:not(.hero) {
+        /* ヒーロー以降のセクションは元の明るい色を強制維持して上書き */
+        --bg-color: #faf8f5;
+        --text-color: #333333;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+      }
+
+      /* --- アニマルの多層レイヤー構造（最終修正版・CSSスコープ問題対応） --- */
+      /* JSで生成されるレイヤーにはAstroのスコープ属性が付与されないため、:global()を使用 */
+      :global(.hero-animal-silhouette), :global(.hero-animal-eyes) {
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        background-size: contain; background-repeat: no-repeat; background-position: center;
+        transition: opacity 0.5s ease;
+        border-radius: 0;
+        pointer-events: none;
+      }
+      
+      :global(.hero-animal-silhouette) {
+        filter: brightness(0);
+        opacity: 0;
+        z-index: 1;
+      }
+      
+      :global(.hero-animal-eyes) {
+        opacity: 0;
+        z-index: 2;
+        filter: drop-shadow(0 0 12px rgba(255, 230, 0, 0.9)) drop-shadow(0 0 4px rgba(255, 255, 255, 0.8));
+        /* 画像背景が黒だった場合の防御策：明るい目の色だけを抽出して合成する */
+        mix-blend-mode: screen;
+      }
+
+      /* 元画像（一番上） */
+      .hero-animal {
+        /* 親のサイズを維持するため相対配置にし、必ず100%で広げる */
+        position: relative;
+        width: 100%; height: 100%;
+        z-index: 3;
+      }
+
+      /* --- 暗闇時の振る舞い --- */
+      /* JSで動的生成したレイヤーにはAstroスコープが付与されないため、状態変化も :global() で囲む必要があります */
+      :global(body.is-dark .hero-animal-silhouette) { opacity: 1; }
+      :global(body.is-dark .hero-animal-eyes) {
+        opacity: 1;
+        /* 不気味なランダム瞬き */
+        animation: blinkAnim 6s infinite;
+      }
+      
+      @keyframes blinkAnim {
+        0%, 96%, 98%, 100% { opacity: 1; }
+        97%, 99% { opacity: 0; } /* 一瞬だけ消える */
+      }
+
+      /* 懐中電灯（スポットライト）効果 */
+      /* .hero-animalは静的HTMLなのでそのままスコープが効きますが、body.is-darkはグローバル要素なので分けて指定します */
+      :global(body.is-dark) .hero-animal {
+        /* JSで更新される変数座標を中心に、半径80pxの円形に切り抜く */
+        -webkit-mask-image: radial-gradient(circle 80px at var(--light-x, -100px) var(--light-y, -100px), black 0%, transparent 100%);
+        mask-image: radial-gradient(circle 80px at var(--light-x, -100px) var(--light-y, -100px), black 0%, transparent 100%);
+      }
+
+      /* SVGロゴの滑らかな色遷移 */
+      .hero-title-svg g[mask] path {
+        transition: fill 0.8s ease, stroke 0.8s ease;
+      }
+      
+      /* 暗闇モード時はSVGのパスをダークモード用のテキスト色（白系）で上書きする */
+      :global(body.is-dark) .hero-title-svg g[mask] path {
+        fill: var(--text-color) !important;
+        stroke: var(--text-color) !important;
+      }
+
+      /* 固定UI（ロゴ・ナビゲーション）のすりガラス背景をダークモード用に反転 */
+      :global(body.is-dark) .site-logo {
+        background-color: rgba(30, 30, 30, 0.65) !important;
+      }
+      :global(body.is-dark) .side-nav {
+        background-color: rgba(30, 30, 30, 0.85) !important;
+      }
+
+      /* 著作権セクションの背景色とテキスト色をダークモード用に反転 */
+      :global(body.is-dark) .site-footer {
+        background-color: #1a1a1a !important;
+      }
+      :global(body.is-dark) .site-footer .legal-notice h4,
+      :global(body.is-dark) .site-footer .legal-notice p,
+      :global(body.is-dark) .site-footer .copyright {
+        color: #eeeeee !important;
+      }
+
+      @media (max-width: 768px) {
+        /* スマホは指で画面が隠れるため、懐中電灯の光の半径を120pxへ拡大し、さらに指の上の領域が見えるように中心を上にずらす(Y座標 - 90px) */
+        :global(body.is-dark) .hero-animal {
+          -webkit-mask-image: radial-gradient(circle 120px at var(--light-x, -100px) calc(var(--light-y, -100px) - 90px), black 0%, transparent 100%) !important;
+          mask-image: radial-gradient(circle 120px at var(--light-x, -100px) calc(var(--light-y, -100px) - 90px), black 0%, transparent 100%) !important;
+        }
+      }
+
+      /* --- PC環境で縦幅が狭い場合のギャラリー自動縮小（見切れ防止） --- */
+      @media (min-width: 769px) and (max-height: 850px) {
+        .gallery-sticky-container {
+          justify-content: center; /* 上揃えを解除し、画面の中央に配置 */
+          padding-top: 0;
+        }
+        .gallery-header {
+          margin-bottom: 3vh; /* 見出しとカードの隙間を圧縮 */
+        }
+        .gallery-header .section-title {
+          font-size: clamp(1.8rem, 4vw, 2.5rem) !important;
+        }
+        .gallery-header p {
+          font-size: 0.95rem !important;
+          line-height: 1.6 !important;
+          margin-top: 0.5rem !important;
+        }
+        .gallery-track {
+          gap: 3rem; /* カード間の隙間を圧縮 */
+        }
+        .animal-card {
+          width: 32vh; /* ビューポートの高さ(vh)に連動してカード全体を縮小 */
+          padding: 1rem;
+        }
+        .animal-card-inner {
+          margin-bottom: 1rem;
+        }
+        .room-view-card {
+          width: 38vh;
+        }
+        .room-view-img {
+          height: 45vh;
+        }
+        .gallery-contact-card {
+          width: 32vh;
+          padding: 2rem 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body id="top" class="is-dark">
+    <a href="/" class="site-logo">
+      見つめるアニマル<br>プロジェクト
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="メニューを開く">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="side-nav" id="side-nav">
+      <ul>
+        <li><a href="#top">アニマルの庭</a></li>
+        <li><a href="#gallery">待っているアニマル</a></li>
+        <li><a href="#canvas-size">作品サイズ</a></li>
+        <li><a href="#profile">コンタクト</a></li>
+      </ul>
+    </nav>
+
+    <section class="hero" id="hero-area">
+      
+      <div class="hero-animal-wrapper"><div class="hero-animal"></div></div>
+      <div class="hero-animal-wrapper"><div class="hero-animal"></div></div>
+      <div class="hero-animal-wrapper"><div class="hero-animal"></div></div>
+      <div class="hero-animal-wrapper"><div class="hero-animal"></div></div>
+      <div class="hero-animal-wrapper"><div class="hero-animal"></div></div>
+      <div class="hero-animal-wrapper"><div class="hero-animal"></div></div>
+      <div class="hero-animal-wrapper"><div class="hero-animal"></div></div>
+
+      <div class="hero-text-container section-container">
+        <div class="eyes-container" style="justify-content: center;">
+          <div class="eye"><div class="pupil"></div></div>
+          <div class="eye"><div class="pupil"></div></div>
+        </div>
+        <h1>
+          <svg class="hero-title-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 253.5988922 163.5914307">
+            <defs>
+              <mask id="text-mask">
+                <g id="mask-paths">
+                  <path class="draw-path path-1" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M45.2993927,21.6206169c-13.9865437,18.9423065-20.764164,43.6237679-17.6218128,47.7163887"/>
+                  <path class="draw-path path-2" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M49.7583847,34.665554c6.4468117-4.6387482,9.5029411-6.4747944,11.3513832-4.1334343,1.8484421,2.341362-.0848961,11.4264717-12.1031914,32.5201797"/>
+                  <path class="draw-path path-3" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M39.0954552,44.775219c2.5686684-1.1931725,10.9757118-3.9940605,15.4598656-4.6269035"/>
+                  <path class="draw-path path-4" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M34.0850601,54.4334297c4.1101685-1.5790253,11.0020599-4.1685371,14.466198-4.8297195"/>
+                  <path class="draw-path path-5" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M34.3720551,66.9469604c2.2705574-.7954254,6.5584106-2.3229446,9.5565453-2.7905807"/>
+                  <path class="draw-path path-6" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M37.5297356,71.0130005C29.4890137,80.2552032.2765918,116.2984238.2765918,116.2984238"/>
+                  <path class="draw-path path-7" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M44.8725662,68.9090729c-3.554409,5.4187241-6.7821007,19.7441483,12.9333115,8.1567078"/>
+                  <path class="draw-path path-8" stroke="#fff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M80.4350281,45.7740021c4.698288-3.8863602,11.9996338-10.455368,15.6040955-7.5867653s-7.7102203,14.957901-8.4862595,16.2461929"/>
+                  <path class="draw-path path-9" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M121.9528809,17.6060276c1.5305252,6.9739571,6.4736633,17.622839,8.931076,20.3078098"/>
+                  <path class="draw-path path-10" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M136.0481262,17.0408058c-1.3751526,6.6551552-4.277771,12.9439392-7.9605713,16.4827499s-8.1482925,2.0084877-5.7909012-1.5276012,13.8005753-11.3940716,19.1047134-7.3177433c5.6080475,4.3098907-4.6636505,24.1386604-16.5744095,28.8903198"/>
+                  <path class="draw-path path-11" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M169.5094299,7.0215855c5.0919189-2.8723497,12.5102081-6.8863983,14.963501-4.2966089s-3.6343231,11.0993977-14.1934814,17.4348936c3.7325439-1.7189331,11.6396332-3.4869785,12.0325317.1964493s-4.0763245,8.1035423-9.2822418,10.7556114-5.8443756.5893478-4.0763245-1.0804729,5.4514771-4.4692268,10.3627167-2.5047321"/>
+                  <path class="draw-path path-12" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M60.1224632,119.7771912c12.6032143-8.7491074,49.6051826-32.1007385,59.5649605-25.0458908,4.6286774,3.2786407-16.4342804,23.6487808-21.5040436,25.048233"/>
+                  <path class="draw-path path-13" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M95.0976028,114.0174332c-1.9286118,8.6787643-9.8113327,49.4490738-9.8113327,49.4490738"/>
+                  <path class="draw-path path-14" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M140.9986115,107.2058105c1.5428925-1.8671341,6.0465698-7.5877533,9.7734375-5.4024582"/>
+                  <path class="draw-path path-15" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M137.7136078,119.1821136c4.9243317-3.6217804,14.9531097-11.3188705,19.3889313-12.5811539"/>
+                  <path class="draw-path path-16" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M160.0918884,85.0882263c5.7858429-4.8215332,22.3719177-16.5802536,27.1934509-11.6622849s-4.5322418,14.0730515-6.0751343,15.0373611"/>
+                  <path class="draw-path path-17" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M174.3725433,89.2347488c1.6304169.3857193,9.537735,5.4965515,9.537735,5.4965515"/>
+                  <path class="draw-path path-18" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M221.5182495,42.3694305c-1.5428925,6.7501488-11.8609772,65.3800125-11.8609772,65.3800125"/>
+                  <path class="draw-path path-19" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" d="M239.5507812,8.9079781c-3.0857849,9.8359299-16.5339813,62.6556435-2.8929138,64.8014336,8.5823364,1.350029,15.1396179-11.4752541,15.1396179-11.4752541"/>
+                </g>
+              </mask>
+            </defs>
+
+            <g mask="url(#text-mask)">
+              <path fill="#231815" d="M45.241703,22.4780617c-1.3204498-1.760601-3.0325813-.722044-4.8376884,2.3105373s-6.4983902,11.1916676-8.2312927,15.9571514c-1.7329044,4.7654839-5.5341148,11.8757706-6.9316139,21.1558647-.6563282,4.3583488.2166138,7.0038185,2.3105373,6.9316139s1.3100853-4.389534,1.8051071-7.3648415c.7020378-4.2195587,3.031847-11.4804878,5.8842831-18.1232834s4.7816467-11.2473068,10.0006638-18.0510788c1.0557518-1.3763313.8664513-1.6606998.0000038-2.8159637Z"/>
+              <path fill="#231815" d="M51.5187721,31.0441818c-1.209156.875597-2.3136559,2.6154366-1.7603874,3.6213722s1.5089035,1.4083099,3.218998.3520775,5.2308693-3.1184044,5.7338371-3.4201851,1.4586067-.704155,1.5089035.8047485-4.0740433,11.6688652-5.6332436,15.5920181-5.0799789,12.2724266-5.9853249,13.1777687-1.6094971,1.8106842-1.0562325,2.4142494,2.7663269,1.5089073,4.7279015-2.0118752,6.890667-15.6423149,8.7516479-19.6157646,3.5710754-9.6066933,1.4586067-12.4736137-5.1302757-2.6657314-10.9647064,1.5592041Z"/>
+              <path fill="#231815" d="M40.755249,41.9082985c-1.4598274.4994164-2.0621719,1.8106842-1.6597939,2.8669205s1.0059357,1.5592003,3.3195915.8047485,8.1480865-2.5651398,9.8581772-2.9172173,2.6657333-.8047485,2.4142494-2.0118713-.8047485-2.3639526-3.8728561-1.7603874-8.1480865,2.3639526-10.0593681,3.017807Z"/>
+              <path fill="#231815" d="M34.5687408,51.917366c-1.343689.4478951-2.967514,1.8106842-2.3136559,2.9172173s1.7100906,1.6597939,4.9793854.6035614,5.8344307-2.0118752,8.1480865-2.7663269,3.1687012-2.2130623,3.1687012-3.0681076-1.860981-1.156826-5.2308693-.3017807-6.639183,1.9112778-8.7516479,2.6154366Z"/>
+              <path fill="#231815" d="M35.8764572,64.1563797c-1.6597939.435791-2.4645462,1.793808-2.2130623,2.6488495s1.9615746,1.7603912,4.7781982,1.0059357,7.8463058-1.525444,6.3374023-3.6547852-2.2633591-1.877861-3.8225594-1.5257835-5.0799789,1.5257835-5.0799789,1.5257835Z"/>
+              <path fill="#231815" d="M39.3367958,69.9236298c-.5293503-1.43573-2.5000458-1.5135574-4.4616241.8503952S2.6314893,111.3908768,1.6955811,112.5305176c-1.4090991,1.7158356-2.1280353,2.917984-1.4189893,3.7679062.778957.9337158,1.7248826.3399048,3.761972-2.0129852,4.1185074-4.7569733,11.1155996-13.5298462,14.8878622-18.0062637s17.8553734-21.6779327,18.8613091-22.784462,2.1424789-1.9615784,1.5490608-3.5710831Z"/>
+              <path fill="#231815" d="M45.5334511,67.5093842c-.84795-.7267456-1.8106842-1.1809921-2.8166237.9687042s-4.2583618,8.2366257-1.3580132,12.2593613c4.6054573,6.3876953,13.9322243-.2011871,14.9381599-.9556427s1.5089035-1.4083099,1.5089035-2.7160263.3520775-2.5148392-1.6094971-1.4083099-6.7900734,3.8225555-10.0090714,3.8225555-3.5207787-2.8166199-2.1627655-5.2811661,1.4651985-3.1184006,1.939724-4.375824.2442093-1.7351151-.4308167-2.313652Z"/>
+              <path fill="#231815" d="M81.347229,42.8619652c-.9255447.7509155-1.3768005,2.0656815-.9122009,2.9120369.3937759.7173386,1.8041229,1.4223633,3.3681412.2105103,3.1533737-2.4433327,6.9535294-5.322197,7.7955627-5.813385s2.5895386-1.2386589,3.1158066-.7123871-1.0525436,3.1927147-2.1050873,4.9469566-4.947464,7.2849464-5.543396,8.1396713c-.7766037,1.1138573-.9213486,2.442749-.3249054,2.9339371s1.7984695.6096268,3.3071136-1.1446114,5.298317-7.1716766,6.4500275-9.0841751c1.6856079-2.7990608,3.2361603-7.0225296,1.131073-8.741684s-5.4760132-1.2251816-8.0372009.2834663-6.3854294,4.5610237-8.2449341,6.069664Z"/>
+              <path fill="#231815" d="M120.7317734,20.1999722c-.3138351-1.3593845.3630676-1.9841137.829483-2.1637249,1.4604416-.562397,2.0076218.2523766,2.2776794.9084396.7404556,1.7987862,4.0680237,11.4293652,7.5185013,16.8611832.7740631,1.218544.0033569,2.1447182-.3696747,2.2962265s-1.4290771.2165947-2.2436371-.8403282c-3.9275131-5.096096-7.4416275-14.5896683-8.012352-17.0617962Z"/>
+              <path fill="#231815" d="M137.394455,18.3941536c-.1741791.853096-.5037537,2.6907482-1.1634521,5.1399117-.6596985,2.4491653-1.8759918,5.837204-5.9541931,10.2846298s-8.3390961,3.310688-8.9708786,2.6070633-2.0132751-1.9800644-.2496796-5.2560482,7.6602249-6.5762863,12.12603-8.6790867c.3784332-.9616108.8270264-3.9372559,1.067749-5.2279453s1.3043213-1.2932177,1.8781433-.9326477c.6670532.4191532,1.4404602,1.2110291,1.2662811,2.0641232ZM129.8353424,28.1615257c-.285675-.3374176-1.4884796.6997395-3.0784302,1.8964882s-3.5636139,3.2675018-3.2378845,3.7945251,2.5333557-.8739929,4.1769867-2.459547,2.5435944-2.7539692,2.139328-3.2314663Z"/>
+              <path fill="#231815" d="M125.2735062,52.5155983c-.5875626.3469505-.7416,1.5115089.1604843,1.3363686,14.9307098-2.8988228,30.20784-34.9003525,10.6069946-32.1798973l-1.1733704,3.8480434c12.4988556-3.0812683,3.8116608,19.0794239-9.5941086,26.9954853Z"/>
+              <path fill="#231815" d="M171.7309418,4.0894017c-.8060455.5619359-2.5276947,1.9670854-2.2215118,2.9321837s1.9002533,1.0069771,3.9907684.0042067,6.7030334-3.1686532,7.898056-3.4085875,2.1026917.0424156,1.9181213,1.2481904-3.2732391,6.0281711-6.1010895,8.1601253c-2.4819489,1.8711767-3.9530182,2.7633982-5.0843964,3.6867828-1.1313782.9233856-1.7743378,2.3550034-1.3763428,3.2025051.2774048.5906982,1.8424377,1.2575035,3.2401123.1575203,2.1934357-1.726244,4.047226-1.022253,5.3461456-.7394905s1.9095917,1.6139202,1.5203857,2.7794342c-.8162384,2.444397-1.139389,2.7732029-3.0766602,2.8515587s-3.9319458-.6155052-6.6697083,1.274559c-3.3930817,2.3424816-4.9626923,4.6578503-4.526947,6.6682568s3.0527496,1.2493858,6.9017639-.8369026,9.3838348-4.6531906,10.6419678-9.6767349-3.611084-6.676837-4.3153381-6.6775799c5.2521515-4.094759,6.3581085-7.4136677,6.8926239-9.2384987C187.4693909,3.8806419,186.6078796.0047884,182.0693665.0000042c-4.5385132-.0047842-10.3384247,4.0893975-10.3384247,4.0893975Z"/>
+              <path fill="#231815" d="M175.935257,87.7863083c-1.1241913-.6017609-2.256546-.2276535-2.6688385.6105499s-.3766174,1.4865341,1.3826752,2.4611282,6.140213,3.4839935,7.3162079,4.3201065,1.9879913,1.1592331,2.5765228.3273163.9766998-1.8180389-1.1161957-3.3339539-6.0185089-3.59729-7.4903564-4.3851471h-.0000153Z"/>
+              <path fill="#231815" d="M96.0425491,112.2960281c-1.2351532-.3348923-2.7425079.0736847-3.2436676,2.5624161s-7.4590378,42.3946686-7.8503952,44.2105408-.6863556,4.033493.3377838,4.397522c1.2014008.4270477,2.0861206-.0503998,2.9702148-4.479126,1.0179977-5.0994873,2.7873459-14.2004089,3.7783966-18.9357605s4.4991684-22.7702103,4.7976074-23.9695282.6996078-3.3822021-.7899399-3.7860641Z"/>
+              <path fill="#231815" d="M222.8768768,40.522049c-1.5263214-1.348526-3.424942-.3120766-4.2320557,3.6960526s-9.7515564,58.6884003-1.01429138,60.5042801-.8024139,3.5951462.3377838,4.3975296,1.9904175.6278381,2.9702148-4.479126,2.7873535-14.2004166,3.7783966-18.9357605,7.2459564-36.6716499,7.726593-38.6031685,1.2730255-5.0680542-.4380188-6.5797958v-.0000114Z"/>
+              <path fill="#231815" d="M108.0707321,109.7468033c-3.1751709,2.894989-7.2530594,6.101265-8.7161179,7.0351334s-3.0817642,1.774353-4.949501,2.0233841-2.2724152,1.8366089-.1556473,2.1167679,5.3733521.4119568,12.0435944-4.56604c6.945282-5.1832581,12.7035522-12.4263458,14.0732269-14.4185944s2.3046341-4.7854462,2.0070419-6.7478638c-.2831573-1.8672485-2.7882156-5.0606232-9.0451279-4.002243-7.4835968,1.2658844-18.2693863,5.5786896-34.1140137,14.3259201-7.239418,3.9966125-17.598175,10.8639984-18.2415619,11.2998047-.6939583.4700623-1.8677368,1.2451553-1.4008026,2.1478958s1.3523026,2.1379242,3.4553108.7782211c3.6109581-2.334671,11.3309364-7.0973969,14.5060844-9.1207809s12.9807663-6.5993347,17.7434998-8.9028778c4.7627258-2.3035431,14.1548462-5.4047623,15.8134995-5.9456253,2.8638611-.9338684,7.9020309-1.1356354,7.1596603,1.4630585-.6241608,2.1847916-5.4832382,8.2322998-10.1791458,12.5138397Z"/>
+              <path fill="#231815" d="M183.7580414,83.9478683c-2.0350342,2.550705-5.031601,4.8311234-5.3663177,5.1898117s-.2045593,2.7575607,2.1757355,1.4156189,4.5293884-3.0555649,6.8061523-6.1589966c1.4373627-1.959259,3.2030334-5.8011398,3.2030487-8.4236679,0-4.3960648-2.4777985-6.1424561-7.0524292-5.5918427s-10.6927185,3.1550064-15.2301636,6.1204453c-4.5374298,2.9654388-8.4608307,5.683075-9.4651947,6.447319-.5816803.4426041-1.2410583,1.4688187-.1852264,2.8843536s2.6805878,1.3217468,3.6861115.4492798c1.6660767-1.4456177,4.8806458-3.6709671,7.04216-5.2389984s10.1136475-5.2043152,11.8052063-5.860878c4.0539093-1.5734787,8.9226685.8188171,2.5809326,8.7675476l-.0000153.0000076Z"/>
+              <path fill="#231815" d="M240.0524902,7.3297858c-.879364-.3947196-1.9515839-.5619392-2.8246613,2.005939-.8730774,2.5678778-4.1356964,14.1315699-5.4439087,21.9040022-.9590607,5.698082-3.1218262,20.6362419-3.1218262,27.2251244s.3151093,16.7765121,8.8019409,17.704483c7.1998291.7872467,12.8256989-7.6954117,14.2843018-9.8078842s2.5148468-4.1243401,1.358017-5.1302757c-2.1570587-1.8757095-3.581131.6700363-4.6273041,2.0118752-2.3136597,2.967514-6.035614,8.6510544-9.5061035,8.6510544-4.4802856,0-6.3054199-6.0126495-6.3054199-12.1991615s.7224731-14.0557861,2.181076-22.8577309,6.0251923-25.6513844,6.2818909-26.2549458.304245-2.6320343-1.0780029-3.25248Z"/>
+              <path stroke="#231815" stroke-width="0.4" stroke-linejoin="round" fill="#231815" d="M138.9639587,119.166748c.6458588.0969009,1.5602722-.2657776,2.6281433-1.0548172,2.4576874-1.8161697,10.2851868-6.9194107,12.4319916-7.8575516,1.0647125-.4651184,1.541687-1.0821075,1.6334534-1.504509.0482483-.2230682-.0055389-.412117-.1700745-.5956345-.462738-.5157394-1.4064331-.9298401-2.4173431-.9298401-.592865,0-1.2086792.1423798-1.7639618.4908218-1.9534149,1.2252808-10.9907684,7.6815567-12.0546875,8.4520035-1.1758423.851532-1.4811707,1.4032593-1.5302124,1.7161102-.0185852.1170731-.0166168.2831802.1633453.5287933.3278809.4469223.6806641.693718,1.0793457.7546234Z"/>
+              <path stroke="#231815" stroke-width="0.4" stroke-linejoin="round" fill="#231815" d="M144.0575256,101.9520569c-2.0443726,1.4420242-3.9234314,3.7604904-3.7814484,4.3739243.9401245.7890396,2.3623657,1.4704971,3.7252808.0735626,1.8810425-1.9284973,4.0654297-3.9139481,6.0057831-4.0183563.4239807-.0225449.6731567-.3132401.7649078-.5778351.0518188-.1495056.134079-.5307693-.2206879-.8428268-.7910156-.6957016-2.2619019-1.9921722-6.4938354.9915314Z"/>
+            </g>
+          </svg>
+      </h1>
+        <p style="margin-bottom: 1.5rem;">ここはアクリル絵の具で生み出されたアニマルたちの庭。<br>あなたを見つめているのは誰でしょうか？</p>
+        
+        <button class="dark-mode-switch" id="dark-mode-switch" aria-label="暗闇モード切替">
+          <span class="icon-sun">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          </span>
+          <span class="icon-moon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+          </span>
+          <span class="switch-text text-dark-mode">あかりをつける</span>
+          <span class="switch-text text-light-mode">あかりを消す</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="concept-section" id="concept">
+      <div class="section-container concept-container">
+        <div class="monkey-puppet-container">
+          
+          <div class="monkey-legs-wrapper">
+            <img src="/anime_ape_2.webp" alt="サルの脚（左）" class="monkey-leg" loading="lazy" decoding="async" />
+            <img src="/anime_ape_2.webp" alt="サルの脚（右）" class="monkey-leg leg-right" loading="lazy" decoding="async" />
+          </div>
+
+          <img src="/anime_ape_1.webp" alt="サルの胴体" class="monkey-body" loading="lazy" decoding="async" />
+        </div>
+        <div class="concept-text">
+          <h2>目が合ったのはどのアニマル？</h2>
+          <p>
+            少し不思議で、どこか愛おしいこの世に一匹しかいないアニマルたち。<br>
+            設計された緻密さと、その時にしか出せない偶然性が生み出したふたつとない豊かな表情。
+          </p>
+          <p>
+            手描きだからこそ宿る、デジタルやAIにはない確かな温度と手触りがあります。<br>
+            あなたと目が合ったその子との出会いで、世界にたったひとつの物語がはじまります。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-wrapper fade-in-up" id="gallery">
+        <div class="gallery-sticky-container">
+          <div class="gallery-header fade-in-up">
+            <h2 class="section-title" style="font-size: clamp(1.44rem, 3.6vw, 2.52rem); font-weight: 500;">庭で待っている子たち</h2>
+            <p style="font-size: 1.05rem; margin-top: 1rem; line-height: 2;">
+              ここで待っているのは、あなたとの出会いを心待ちにするアニマルたち。<br>
+              アクリル絵の具をメインに描かれた、世界に一匹だけのオリジナル作品です。<br>
+              <br class="sp-br">気になるアニマルと目が合ったら、ぜひHeppoにメッセージをお送りください。
+            </p>
+            {/* --- ここから追加：モバイル用スワイプヒント --- */}
+            <div class="swipe-hint-mobile">
+              <span>横にスワイプして見る</span>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20">
+                <path d="M16.01 11H4v2h12.01v3L20 12l-3.99-4v3z"></path>
+              </svg>
+            </div>
+            {/* --- ここまで追加 --- */}
+          </div>
+          
+          <div class="gallery-track" id="gallery-track">
+            {/* --- ここから追加：部屋に飾ったイメージ画像パネル --- */}
+            <div class="room-view-card">
+              <img src="/room-view-f3.webp" alt="F3号キャンバスの配置イメージ" class="room-view-img" loading="lazy" decoding="async" />
+              <div class="room-view-text">
+                <p>あなたのお部屋に、<br>見つめるアニマルを。</p>
+              </div>
+              
+              <div class="swipe-indicator-right">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </div>
+            {/* --- ここまで追加 --- */}
+            {galleryItems.map((item) => (
+              <div class="animal-card">
+                {item.isSoldOut && <span class="sold-out-badge">SOLD OUT</span>}
+                
+                <div class="animal-card-content">
+                  <div class="animal-card-inner">
+                    <img src={item.image} alt={item.title} class="animal-img" style="object-fit: cover;" loading="lazy" decoding="async" />
+                    <div class="animal-card-overlay">{item.price}</div>
+                  </div>
+                  <p class="animal-card-name">{item.title}</p>
+                  <p class="animal-card-material">{item.material}</p>
+                  <p class="animal-card-size">{item.size}</p>
+                </div>
+              </div>
+            ))}
+            
+            {/* --- ここから追加 --- */}
+            <div class="gallery-contact-card">
+              <h3>原画のご購入をご検討の方へ</h3>
+              <p>原画のご購入やご相談は、Instagramのダイレクトメッセージにて承っております。</p>
+              <a href="https://www.instagram.com/heppo_m/" target="_blank" rel="noopener noreferrer" class="gallery-contact-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                DMで相談する
+              </a>
+            </div>
+            {/* --- ここまで追加 --- */}
+          </div>
+        </div>
+      </section>
+
+      <section class="canvas-size-section fade-in-up" id="canvas-size">
+        <div class="section-container">
+          <h2 class="section-title" style="text-align: center; font-size: clamp(1.4rem, 3.6vw, 2.2rem);">作品のキャンバスサイズについて</h2>
+          <p style="text-align: center; margin-bottom: 4rem; color: #555;">すべての原画は、F3号サイズのキャンバスを使用しています。<br>お部屋の壁に飾るにも、お気に入りの棚に立てかけるにも、日々の生活空間に自然に馴染むサイズ感です。</p>
+          
+          <div class="canvas-anim-wrapper">
+            <div class="canvas-3d-box">
+              <div class="c-front">F3</div>
+              <div class="c-side"></div>
+              
+              <div class="dim-line-y"></div>
+              <div class="dim-text-y">縦 27.3cm</div>
+              
+              <div class="dim-line-x"></div>
+              <div class="dim-text-x">横 22.0cm</div>
+            </div>
+
+            <div class="depth-circle">厚み<br>1.5cm</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="profile" class="fade-in-up profile-section">
+        <div class="profile-card">
+          <h2 class="profile-title">イラストレーター<span class="profile-name">Heppo</span></h2>
+          <div class="profile-desc">
+            <p>グラフィックデザイナーとして活動するかたわら、大好きなアニマルたちを描くイラストレーター。</p>
+            <p>
+              デザイナーとしての目線で緻密に設計し、崩し、描き、設計を繰り返し、<br>
+              イラストレーターとしての目線でアイデアと偶然性を掛け合わせることを大事にしています。<br>
+              双方の視点があるからこそ出せる味をお楽しみください。
+            </p>
+            <div style="margin-top: 2rem;">
+              <p style="margin-bottom: 0.5rem; font-weight: 700; letter-spacing: 0.1em;">-展示-</p>
+              <p>2023/11/11-11/26 個展「見つめるアニマル」（神戸）</p>
+            </div>
+          </div>
+          
+          <div class="profile-order-box">
+            <h3>オリジナル制作のご依頼も</h3>
+            <p>ギャラリーにはいない、完全新規のオリジナルイラスト制作も承っております。<br>ご依頼やご相談は、Instagramのダイレクトメッセージよりお気軽にご連絡ください。</p>
+            <a href="https://www.instagram.com/heppo_m/" target="_blank" rel="noopener noreferrer" class="instagram-link-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="instagram-icon">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+              Instagramで相談する
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-content">
+          <div class="legal-notice">
+            <h4>著作権および作品の取り扱いについて</h4>
+            <p>作品の著作権はすべて作者であるHeppoに帰属いたします。原画のご購入は所有権の移転であり、著作権を譲渡するものではございません。</p>
+            <p>ご購入後も、作者は作品の画像をポートフォリオやSNS、各種媒体に自由に使用する権利を有します。<br>ご購入者様によるご自宅での展示や私的なご利用は心より歓迎いたします。無断での複製や商用利用、作品の改変は固くお断りしております。</p>
+          </div>
+          <p class="copyright">&copy; 見つめるアニマルプロジェクト / Heppo. All rights reserved.</p>
+        </div>
+      </footer>
+    <a href="https://www.instagram.com/heppo_m/" target="_blank" rel="noopener noreferrer" class="floating-mail-btn" aria-label="新規イラストのご依頼・お問い合わせ">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+      </svg>
+      <span class="floating-tooltip">お問い合わせ・ご依頼はこちら</span>
+    </a>
+
+    <script>
+      // ページ更新時に必ずトップ（ヒーローエリア）に戻るように設定
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+
+      // タイトルロゴの各パスの正確な長さを計算し、CSS変数にセットする
+      document.addEventListener('DOMContentLoaded', () => {
+        const drawPaths = document.querySelectorAll('.draw-path');
+        drawPaths.forEach(path => {
+          const length = path.getTotalLength();
+          path.style.setProperty('--path-length', length);
+        });
+      });
+
+      const animalWrappers = document.querySelectorAll('.hero-animal-wrapper');
+      const heroSection = document.getElementById('hero-area');
+
+      let isMobileDevice = window.innerWidth <= 768;
+      let currentMouseX = typeof window !== 'undefined' ? window.innerWidth / 2 : 0;
+      let currentMouseY = typeof window !== 'undefined' ? window.innerHeight / 2 : 0;
+      let currentScrollProgress = 0;
+
+      // 安全な固定均等配置処理
+      const initRandomAnimals = () => {
+        const images = [1, 2, 3, 4, 5, 6, 7].sort(() => Math.random() - 0.5);
+        const depths = [
+          { cls: 'depth-fg', z: 2.8 }, { cls: 'depth-fg', z: 2.0 },
+          { cls: 'depth-mg', z: 1.2 }, { cls: 'depth-mg', z: 1.0 }, { cls: 'depth-mg', z: 0.8 },
+          { cls: 'depth-bg', z: 0.5 }, { cls: 'depth-bg', z: 0.3 }
+        ].sort(() => Math.random() - 0.5);
+
+        const numAnimals = animalWrappers.length;
+
+        animalWrappers.forEach((wrapper, index) => {
+          const animal = wrapper.querySelector('.hero-animal');
+          
+          // シルエットと光る目のレイヤーを動的に生成して追加
+          let silhouette = wrapper.querySelector('.hero-animal-silhouette');
+          let eyes = wrapper.querySelector('.hero-animal-eyes');
+          if (!silhouette) {
+            silhouette = document.createElement('div');
+            silhouette.className = 'hero-animal-silhouette';
+            wrapper.insertBefore(silhouette, animal);
+          }
+          if (!eyes) {
+            eyes = document.createElement('div');
+            eyes.className = 'hero-animal-eyes';
+            wrapper.insertBefore(eyes, animal);
+          }
+
+          const imgNum = images[index];
+          const normalImg = `url('/hero-animal-0${imgNum}.webp')`;
+          const eyesImg = `url('/hero-animal-0${imgNum}-eyes.webp')`; // 目の画像(.webp)
+
+          animal.style.backgroundImage = normalImg;
+          silhouette.style.backgroundImage = normalImg; // シルエットも元画像を黒く塗りつぶす
+          eyes.style.backgroundImage = eyesImg;
+          
+          wrapper.className = 'hero-animal-wrapper ' + depths[index].cls;
+          wrapper.dataset.depth = depths[index].z;
+
+          // 1. 角度計算：真上(-90度)を起点に完全に均等分割（ランダム排除）
+          const baseAngle = (360 / numAnimals) * index - 90;
+          const radian = baseAngle * (Math.PI / 180);
+
+          // 2. 距離計算：スマホとPCで固定の半径比率を設定
+          let radiusX, radiusY;
+          if (isMobileDevice) {
+            // スマホ：左右の広がりを30%、上下を40%で固定（はみ出さない）
+            radiusX = 30; 
+            radiusY = 40;
+          } else {
+            // PC：左右40%、上下35%で固定
+            radiusX = 40;
+            radiusY = 35;
+          }
+
+          // 中心位置(50%)に設定
+          wrapper.style.left = `calc(50% + ${Math.cos(radian) * radiusX}%)`;
+          wrapper.style.top = `calc(50% + ${Math.sin(radian) * radiusY}%)`;
+
+          wrapper.style.setProperty('--start-x', `${Math.cos(radian) * -100}px`);
+          wrapper.style.setProperty('--start-y', `${Math.sin(radian) * -100}px`);
+          wrapper.dataset.dirX = Math.cos(radian);
+          wrapper.dataset.dirY = Math.sin(radian);
+
+          wrapper.classList.add('is-ready');
+        });
+      };
+
+      initRandomAnimals();
+
+      window.addEventListener('resize', () => {
+        isMobileDevice = window.innerWidth <= 768;
+      });
+
+      // 座標の更新処理（二重の中心補正バグを修正）
+      const updateAnimalPositions = () => {
+        animalWrappers.forEach(wrapper => {
+          const animal = wrapper.querySelector('.hero-animal');
+          const silhouette = wrapper.querySelector('.hero-animal-silhouette');
+          const eyes = wrapper.querySelector('.hero-animal-eyes');
+          
+          if (!animal) return;
+          
+          const depth = parseFloat(wrapper.dataset.depth || 1);
+          const dirX = parseFloat(wrapper.dataset.dirX);
+          const dirY = parseFloat(wrapper.dataset.dirY);
+          
+          let transformStr = '';
+
+          if (isMobileDevice) {
+            // モバイル用の移動計算（-50%の二重補正を削除）
+            const maxSpread = 150 * depth; 
+            const scrollMoveX = dirX * maxSpread * currentScrollProgress;
+            const scrollMoveY = dirY * maxSpread * currentScrollProgress;
+            transformStr = `translate(${scrollMoveX}px, ${scrollMoveY}px)`;
+          } else {
+            // PC用の移動・回転計算（-50%の二重補正を削除）
+            const rect = wrapper.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            const deltaX = currentMouseX - centerX;
+            const deltaY = currentMouseY - centerY;
+            const mouseMoveX = deltaX * 0.02 * depth;
+            const mouseMoveY = deltaY * 0.02 * depth;
+            
+            const maxAngle = 25;
+            let rotateY = deltaX * 0.04;
+            let rotateX = -deltaY * 0.04;
+            rotateY = Math.max(-maxAngle, Math.min(maxAngle, rotateY));
+            rotateX = Math.max(-maxAngle, Math.min(maxAngle, rotateX));
+
+            const maxSpread = 400 * depth;
+            const scrollMoveX = dirX * maxSpread * currentScrollProgress;
+            const scrollMoveY = dirY * maxSpread * currentScrollProgress;
+            
+            transformStr = `translate(${mouseMoveX + scrollMoveX}px, ${mouseMoveY + scrollMoveY}px) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          }
+
+          animal.style.transform = transformStr;
+          if (silhouette) silhouette.style.transform = transformStr;
+          if (eyes) eyes.style.transform = transformStr;
+        });
+      };
+
+      // マウス移動イベント（PCのみ実行し、スマホでのスワイプ誤爆による負荷を防ぐ）
+      if (!isMobileDevice) {
+        document.addEventListener('mousemove', (e) => {
+          currentMouseX = e.clientX;
+          currentMouseY = e.clientY;
+
+          document.querySelectorAll('.monkey-leg').forEach(leg => {
+            const rect = leg.getBoundingClientRect();
+            const legBottomX = rect.left + rect.width / 2;
+            const legBottomY = rect.bottom;
+            
+            const deltaX = currentMouseX - legBottomX;
+            const deltaY = currentMouseY - legBottomY;
+            const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
+
+            const magneticRange = 200; 
+
+            if (distance > magneticRange) {
+              leg.style.transform = ''; 
+              leg.classList.remove('is-repelling');
+              return;
+            }
+
+            leg.classList.add('is-repelling');
+            const force = (magneticRange - distance) / magneticRange;
+            const maxAngle = 40; 
+            const direction = deltaX > 0 ? -1 : 1;
+            const rotateZ = direction * maxAngle * force;
+
+            leg.style.transformOrigin = '50% 5%';
+            leg.style.transform = `perspective(1000px) rotate(${rotateZ}deg)`;
+          });
+
+          if (currentScrollProgress < 1) {
+            updateAnimalPositions();
+          }
+        });
+      }
+
+      // スクロールイベント：フェードアウトと拡散処理を同時に実行
+      window.addEventListener('scroll', () => {
+        if (!heroSection) return;
+
+        const scrollY = window.scrollY;
+        const windowHeight = window.innerHeight;
+        const fadeEndPosition = windowHeight * 0.6; 
+        
+        if (scrollY <= fadeEndPosition) {
+          currentScrollProgress = scrollY / fadeEndPosition;
+          
+          const currentOpacity = 1 - currentScrollProgress;
+          heroSection.style.opacity = currentOpacity;
+          
+          // モバイルでは blur アニメーションを省略
+          if (!isMobileDevice) {
+            const currentBlur = currentScrollProgress * 10;
+            heroSection.style.filter = `blur(${currentBlur}px)`;
+          } else {
+            heroSection.style.filter = 'none';
+          }
+          
+          updateAnimalPositions();
+        } else if (currentScrollProgress !== 1) {
+          currentScrollProgress = 1;
+          heroSection.style.opacity = 0;
+          if (!isMobileDevice) {
+            heroSection.style.filter = `blur(10px)`;
+          }
+          updateAnimalPositions();
+        }
+      }, { passive: true });
+
+      const pupils = document.querySelectorAll('.pupil');
+      const heroArea = document.getElementById('hero-area');
+
+      heroArea.addEventListener('mousemove', (e) => {
+        pupils.forEach(pupil => {
+          const rect = pupil.getBoundingClientRect();
+          const x = rect.left + rect.width / 2;
+          const y = rect.top + rect.height / 2;
+          const radian = Math.atan2(e.clientY - y, e.clientX - x);
+          const distance = 15; 
+          const moveX = Math.cos(radian) * distance;
+          const moveY = Math.sin(radian) * distance;
+          pupil.style.transform = `translate(${moveX}px, ${moveY}px)`;
+        });
+      });
+
+      heroArea.addEventListener('mouseleave', () => {
+        pupils.forEach(pupil => {
+          pupil.style.transform = `translate(0px, 0px)`;
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('.fade-in-up').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Hamburger menu toggle
+      const hamburger = document.getElementById('hamburger');
+      const sideNav = document.getElementById('side-nav');
+
+      if (hamburger && sideNav) {
+        hamburger.addEventListener('click', () => {
+          hamburger.classList.toggle('is-open');
+          sideNav.classList.toggle('is-open');
+        });
+
+        document.querySelectorAll('.side-nav a').forEach(link => {
+          link.addEventListener('click', () => {
+            hamburger.classList.remove('is-open');
+            sideNav.classList.remove('is-open');
+          });
+        });
+      }
+
+
+      let lastScrollY = window.scrollY;
+      // .dark-mode-switch をリストに追加し、スクロール時に一緒に消す
+      const hideableElements = document.querySelectorAll('.side-nav, .hamburger, .site-logo, .dark-mode-switch');
+
+      window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        // 下スクロール かつ ページ上部から100px以上離れている場合
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+          hideableElements.forEach(el => el.classList.add('nav-hidden'));
+        } else {
+          // 上スクロール または ページ最上部付近
+          hideableElements.forEach(el => el.classList.remove('nav-hidden'));
+        }
+        lastScrollY = currentScrollY;
+      }, { passive: true });
+
+      const galleryWrapper = document.querySelector('.gallery-wrapper');
+      const galleryTrack = document.getElementById('gallery-track');
+
+      window.addEventListener('scroll', () => {
+        if (!galleryWrapper || !galleryTrack) return;
+
+        const wrapperRect = galleryWrapper.getBoundingClientRect();
+        const wrapperTop = wrapperRect.top; 
+        const wrapperHeight = galleryWrapper.offsetHeight;
+        const windowHeight = window.innerHeight;
+
+        if (wrapperTop <= 0 && wrapperTop > -(wrapperHeight - windowHeight)) {
+          // 画面に固定された瞬間から、遊び（ディレイ）なしで横スクロールを開始
+          const scrolled = Math.abs(wrapperTop);
+          const effectiveScrollHeight = wrapperHeight - windowHeight;
+          
+          let progress = scrolled / effectiveScrollHeight;
+          progress = Math.min(progress, 1); // 1.0を超えないように制限
+          
+          const maxScroll = galleryTrack.scrollWidth - window.innerWidth;
+          galleryTrack.style.transform = `translateX(-${progress * maxScroll}px)`;
+        } else if (wrapperTop > 0) {
+          galleryTrack.style.transform = `translateX(0px)`;
+        } else if (wrapperTop <= -(wrapperHeight - windowHeight)) {
+          // 完全にスクロールしきった後は最後の位置で固定
+          const maxScroll = galleryTrack.scrollWidth - window.innerWidth;
+          galleryTrack.style.transform = `translateX(-${maxScroll}px)`;
+        }
+      }, { passive: true });
+
+
+      // --- 暗闇スイッチと懐中電灯ロジック ---
+      const darkModeSwitch = document.getElementById('dark-mode-switch');
+      if (darkModeSwitch) {
+        darkModeSwitch.addEventListener('click', () => {
+          document.body.classList.toggle('is-dark');
+        });
+      }
+
+      // 懐中電灯（スポットライト）の座標を各アニマルに渡す
+      const updateSpotlight = (clientX, clientY) => {
+        if (!document.body.classList.contains('is-dark')) return;
+        
+        animalWrappers.forEach(wrapper => {
+          const animal = wrapper.querySelector('.hero-animal');
+          if (!animal) return;
+          const rect = animal.getBoundingClientRect();
+          // アニマル要素内の相対座標を計算
+          const x = clientX - rect.left;
+          const y = clientY - rect.top;
+          
+          animal.style.setProperty('--light-x', `${x}px`);
+          animal.style.setProperty('--light-y', `${y}px`);
+        });
+      };
+
+      if (heroSection) {
+        // PC用のマウスイベント
+        heroSection.addEventListener('mousemove', (e) => updateSpotlight(e.clientX, e.clientY), { passive: true });
+        
+        const hideSpotlight = () => updateSpotlight(-1000, -1000);
+        heroSection.addEventListener('mouseleave', hideSpotlight);
+
+        // --- スマホ用の高度な操作切り分け（長押しでスクロールロック） ---
+        let touchTimer;
+        let isSearching = false;
+
+        heroSection.addEventListener('touchstart', (e) => {
+          if (!document.body.classList.contains('is-dark')) return;
+          isSearching = false;
+          // 画面に触れて150ミリ秒指を止めると「探索モード」に入りスクロールをロックする
+          touchTimer = setTimeout(() => { isSearching = true; }, 150);
+          updateSpotlight(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: false }); // e.preventDefault() を使うため passive: false に変更
+
+        heroSection.addEventListener('touchmove', (e) => {
+          if (!document.body.classList.contains('is-dark')) return;
+          
+          if (isSearching) {
+            // 探索モード中：画面スクロールを強制停止し、指に光を追従させる
+            e.preventDefault(); 
+          } else {
+            // すぐにスワイプした場合：タイマーを解除し、画面の上下スクロールを優先する
+            clearTimeout(touchTimer); 
+          }
+          updateSpotlight(e.touches[0].clientX, e.touches[0].clientY);
+        }, { passive: false });
+
+        heroSection.addEventListener('touchend', () => {
+          clearTimeout(touchTimer);
+          isSearching = false;
+          hideSpotlight();
+        });
+      }
+    </script>
+  </body>
+</html>

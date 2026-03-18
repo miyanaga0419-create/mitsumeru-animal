@@ -1,0 +1,141 @@
+---
+// 背景パーティクル Canvas コンポーネント
+---
+
+<svg style="width:0; height:0; position:absolute; z-index:-1;" aria-hidden="true">
+  <filter id="crayon-noise">
+    <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+    <feDisplacementMap in="SourceGraphic" in2="noise" scale="100" xChannelSelector="R" yChannelSelector="G" />
+  </filter>
+</svg>
+<canvas id="particleCanvas"></canvas>
+
+<style>
+  #particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* -2から0へ変更。bodyの背景色より手前、イラスト(z-index:1以上)より奥に配置 */
+    pointer-events: none; /* マウスイベントを無視 */
+    
+    /* 強いぼかしを廃止し、SVGノイズフィルターでクレヨン風の荒れを作る */
+    filter: url(#crayon-noise) blur(2px); 
+    opacity: 0.75; 
+    will-change: opacity, filter;
+  }
+
+  /* スマホ環境での致命的なGPU負荷を回避するため、重いフィルターを無効化する */
+  @media (max-width: 768px) {
+    #particleCanvas {
+      filter: none !important;
+    }
+  }
+</style>
+
+<script>
+  const canvas = document.getElementById('particleCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  // 赤とピンクを削除し、緑・黄・青のみに限定
+  const colors = ['#2ECC71', '#F1C40F', '#3498DB'];
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      
+      // 動きを少し早くするため初期速度を上げる (0.1 -> 0.5)
+      this.vx = (Math.random() - 0.5) * 0.5;
+      this.vy = (Math.random() - 0.5) * 0.5;
+      
+      this.color = colors[Math.floor(Math.random() * colors.length)];
+      
+      // 画面を埋め尽くすほど巨大な塊にする (200px ~ 600px)
+      this.size = Math.random() * 400 + 200;
+      
+      // 巨大な塊同士が重なり合って溶け込むよう、個別の透明度をさらに下げる (0.05 ~ 0.15)
+      this.alpha = Math.random() * 0.1 + 0.05;
+    }
+
+    update() {
+      // 加速度の変化量を少し増やして動きを活発にする (0.01 -> 0.02)
+      this.vx += (Math.random() - 0.5) * 0.02;
+      this.vy += (Math.random() - 0.5) * 0.02;
+
+      // 最高速度の制限を引き上げ、もう少し早く動けるようにする (0.15 -> 0.5)
+      const maxSpeed = 0.5;
+      if (this.vx > maxSpeed) this.vx = maxSpeed;
+      if (this.vx < -maxSpeed) this.vx = -maxSpeed;
+      if (this.vy > maxSpeed) this.vy = maxSpeed;
+      if (this.vy < -maxSpeed) this.vy = -maxSpeed;
+
+      this.x += this.vx;
+      this.y += this.vy;
+
+      if (this.x < -this.size) this.x = canvas.width + this.size;
+      if (this.x > canvas.width + this.size) this.x = -this.size;
+      if (this.y < -this.size) this.y = canvas.height + this.size;
+      if (this.y > canvas.height + this.size) this.y = -this.size;
+    }
+
+    draw() {
+      ctx.globalAlpha = this.alpha;
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.closePath();
+      ctx.globalAlpha = 1; 
+    }
+  }
+
+  // パーティクル配列
+  const particles = [];
+  // 画面が完全に塗りつぶされないよう、数を大幅に減らして「白場（隙間）」を作る (50 -> 15)
+  for (let i = 0; i < 15; i++) {
+    particles.push(new Particle());
+  }
+
+  // スクロールによるフェードアウト制御のベース値をCSSに合わせる
+  const baseOpacity = 0.85; // 0.6から0.85へ変更
+  let currentOpacity = baseOpacity;
+  
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    // ヒーローエリアが消えるのと同じタイミング（画面高の60%）で完全に消す
+    const fadeEndPosition = windowHeight * 0.6; 
+    
+    if (scrollY <= fadeEndPosition) {
+      const progress = scrollY / fadeEndPosition;
+      currentOpacity = baseOpacity * (1 - progress);
+      canvas.style.opacity = currentOpacity;
+    } else if (currentOpacity !== 0) {
+      currentOpacity = 0;
+      canvas.style.opacity = 0;
+    }
+  }, { passive: true });
+
+  function animate() {
+    // 透明度が0より大きい（見えている）時だけ計算・描画して負荷を劇的に下げる
+    if (currentOpacity > 0) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        particles[i].update();
+        particles[i].draw();
+      }
+    }
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
+</script>

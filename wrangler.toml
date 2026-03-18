@@ -1,0 +1,9 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "mitsumeru-animal"
+
+# Workers-specific settings (disabled for Pages migration)
+# main = "src/index.js"
+# compatibility_date = "2024-03-18"
+
+[pages_build_output_dir]
+directory = "dist"

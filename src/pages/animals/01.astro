@@ -1,0 +1,130 @@
+---
+// 個別原画販売ページ：おだやかな子
+---
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>おだやかな子 - アニマルの庭</title>
+    <style>
+      :root {
+        --bg-color: #f7f3e8;
+        --text-color: #4a4a4a;
+        --accent-color: #d4a373;
+      }
+      body {
+        margin: 0;
+        font-family: sans-serif;
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        line-height: 1.8;
+      }
+      .detail-container {
+        max-width: 800px;
+        margin: 4rem auto;
+        padding: 0 2rem;
+        container-type: inline-size;
+      }
+      .back-link {
+        display: inline-block;
+        margin-bottom: 2rem;
+        color: var(--text-color);
+        text-decoration: none;
+        border-bottom: 1px solid var(--text-color);
+      }
+      .artwork-grid {
+        display: grid;
+        gap: 3rem;
+      }
+      @container (min-width: 600px) {
+        .artwork-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      .artwork-image {
+        width: 100%;
+        aspect-ratio: 1/1;
+        background: #e0e0e0;
+        border-radius: 12px;
+      }
+      .artwork-info h1 {
+        font-size: 1.8rem;
+        margin-top: 0;
+        margin-bottom: 1rem;
+      }
+      .price {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-bottom: 1.5rem;
+      }
+      .description {
+        margin-bottom: 2rem;
+      }
+      .specs {
+        background: #fff;
+        padding: 1.5rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+      }
+      .specs dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 0.5rem 1rem; }
+      .specs dt { font-weight: bold; }
+      .specs dd { margin: 0; }
+      .buy-instruction {
+        background: #e9edc9;
+        padding: 1.5rem;
+        border-radius: 8px;
+      }
+      .buy-instruction h2 {
+        font-size: 1.2rem;
+        margin-top: 0;
+      }
+      .mail-btn {
+        display: block;
+        text-align: center;
+        background-color: var(--accent-color);
+        color: #fff;
+        padding: 1rem;
+        border-radius: 30px;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 1.5rem 0;
+      }
+      .legal-link {
+        font-size: 0.8rem;
+        text-align: center;
+        display: block;
+        color: #888;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="detail-container">
+      <a href="/" class="back-link">← 庭に戻る</a>
+      <div class="artwork-grid">
+        <div class="artwork-image"></div>
+        <div class="artwork-info">
+          <h1>おだやかな子</h1>
+          <div class="price">保護費用：35,000円</div>
+          <div class="description">
+            <p>いつも日向ぼっこをしている、おだやかな性格の子です。少し垂れた耳と、何かを期待して見上げてくるような視線が特徴です。目が合うと、なんだか放っておけない気持ちになります。</p>
+          </div>
+          <div class="specs">
+            <dl>
+              <dt>画材</dt><dd>キャンバス、アクリル絵の具</dd>
+              <dt>サイズ</dt><dd>F4号 (333mm × 242mm)</dd>
+              <dt>状態</dt><dd>お迎え待ち</dd>
+            </dl>
+          </div>
+          <div class="buy-instruction">
+            <h2>この子をお迎えする</h2>
+            <p>お迎えをご希望の方は、以下のボタンからメールにてご連絡ください。折り返し、お振込先の銀行口座と発送手順をご案内いたします。</p>
+            <a href="mailto:heppo_dummy@example.com?subject=お迎え希望：おだやかな子" class="mail-btn">Heppoにメールを送る</a>
+            <a href="/legal" class="legal-link">特定商取引法に基づく表記</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
